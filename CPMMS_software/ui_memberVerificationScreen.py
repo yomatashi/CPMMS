@@ -17,7 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
     QLabel, QLineEdit, QPushButton, QSizePolicy,
-    QStackedWidget, QVBoxLayout, QWidget)
+    QStackedWidget, QToolButton, QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_Form(object):
@@ -113,14 +113,6 @@ class Ui_Form(object):
         self.sidebar.setFrameShadow(QFrame.Raised)
         self.gridLayout_2 = QGridLayout(self.sidebar)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.profile = QFrame(self.sidebar)
-        self.profile.setObjectName(u"profile")
-        self.profile.setMaximumSize(QSize(16777215, 950))
-        self.profile.setFrameShape(QFrame.StyledPanel)
-        self.profile.setFrameShadow(QFrame.Raised)
-
-        self.gridLayout_2.addWidget(self.profile, 0, 0, 1, 1)
-
         self.btn_signout = QPushButton(self.sidebar)
         self.btn_signout.setObjectName(u"btn_signout")
         sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
@@ -133,10 +125,87 @@ class Ui_Form(object):
         font1.setPointSize(11)
         font1.setBold(True)
         self.btn_signout.setFont(font1)
-        self.btn_signout.setStyleSheet(u"background-color: rgb(0, 0, 0);\n"
+        self.btn_signout.setStyleSheet(u"background-color: rgb(59, 59, 59);\n"
 "color: rgb(255, 255, 255)")
 
-        self.gridLayout_2.addWidget(self.btn_signout, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.btn_signout, 2, 0, 1, 1)
+
+        self.profileFrame = QFrame(self.sidebar)
+        self.profileFrame.setObjectName(u"profileFrame")
+        self.profileFrame.setMaximumSize(QSize(16777215, 950))
+        self.profileFrame.setFrameShape(QFrame.StyledPanel)
+        self.profileFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_2 = QVBoxLayout(self.profileFrame)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.profile_img = QLabel(self.profileFrame)
+        self.profile_img.setObjectName(u"profile_img")
+
+        self.verticalLayout_2.addWidget(self.profile_img)
+
+        self.profile = QVBoxLayout()
+        self.profile.setSpacing(10)
+        self.profile.setObjectName(u"profile")
+        self.profile.setContentsMargins(-1, 10, -1, 10)
+        self.name_label = QLabel(self.profileFrame)
+        self.name_label.setObjectName(u"name_label")
+        font2 = QFont()
+        font2.setPointSize(16)
+        self.name_label.setFont(font2)
+
+        self.profile.addWidget(self.name_label, 0, Qt.AlignHCenter)
+
+        self.position_label = QLabel(self.profileFrame)
+        self.position_label.setObjectName(u"position_label")
+        self.position_label.setFont(font2)
+
+        self.profile.addWidget(self.position_label, 0, Qt.AlignHCenter)
+
+        self.btn_edit_profile = QToolButton(self.profileFrame)
+        self.btn_edit_profile.setObjectName(u"btn_edit_profile")
+        self.btn_edit_profile.setFont(font)
+
+        self.profile.addWidget(self.btn_edit_profile, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_2.addLayout(self.profile)
+
+        self.frame = QFrame(self.profileFrame)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_2.addWidget(self.frame)
+
+        self.dateTime = QVBoxLayout()
+        self.dateTime.setSpacing(10)
+        self.dateTime.setObjectName(u"dateTime")
+        self.Date_Label = QLabel(self.profileFrame)
+        self.Date_Label.setObjectName(u"Date_Label")
+        self.Date_Label.setFont(font2)
+
+        self.dateTime.addWidget(self.Date_Label, 0, Qt.AlignHCenter)
+
+        self.Time_Label = QLabel(self.profileFrame)
+        self.Time_Label.setObjectName(u"Time_Label")
+        font3 = QFont()
+        font3.setPointSize(18)
+        font3.setBold(True)
+        self.Time_Label.setFont(font3)
+
+        self.dateTime.addWidget(self.Time_Label, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_2.addLayout(self.dateTime)
+
+        self.frame_2 = QFrame(self.profileFrame)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_2.addWidget(self.frame_2)
+
+
+        self.gridLayout_2.addWidget(self.profileFrame, 1, 0, 1, 1)
 
 
         self.gridLayout.addWidget(self.sidebar, 0, 0, 3, 1)
@@ -253,6 +322,12 @@ class Ui_Form(object):
         self.btn_checkout.setText(QCoreApplication.translate("Form", u"Checkout", None))
         self.btn_member_verification.setText(QCoreApplication.translate("Form", u"Member Verification", None))
         self.btn_signout.setText(QCoreApplication.translate("Form", u"SIGN OUT", None))
+        self.profile_img.setText("")
+        self.name_label.setText(QCoreApplication.translate("Form", u"name", None))
+        self.position_label.setText(QCoreApplication.translate("Form", u"staff position", None))
+        self.btn_edit_profile.setText(QCoreApplication.translate("Form", u"Edit profile", None))
+        self.Date_Label.setText(QCoreApplication.translate("Form", u"date", None))
+        self.Time_Label.setText(QCoreApplication.translate("Form", u"time", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Member verification</span></p></body></html>", None))
         self.label_8.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt;\">Select method to verify membership</span></p></body></html>", None))
         self.btn_ic.setText(QCoreApplication.translate("Form", u"IC NUMBER VERIFICATION", None))

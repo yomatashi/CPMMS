@@ -215,21 +215,6 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QLabel" name="label_5">
-       <property name="font">
-        <font>
-         <family>Roboto Condensed Light</family>
-         <pointsize>12</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Clocked Time : </string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -258,7 +243,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="MemberLabel">
+      <widget class="QLabel" name="MemberIDLabel">
        <property name="font">
         <font>
          <family>Roboto Condensed Light</family>
@@ -271,40 +256,6 @@
         <string/>
        </property>
       </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="HoursLabel">
-         <property name="font">
-          <font>
-           <family>Roboto Condensed Light</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="MinLabel">
-         <property name="font">
-          <font>
-           <family>Roboto Condensed Light</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
      </item>
     </layout>
    </widget>

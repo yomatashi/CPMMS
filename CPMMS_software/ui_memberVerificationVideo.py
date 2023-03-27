@@ -119,12 +119,6 @@ class Ui_OutputDialog(object):
 
         self.verticalLayout.addWidget(self.label_4)
 
-        self.label_5 = QLabel(self.verticalLayoutWidget)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setFont(font4)
-
-        self.verticalLayout.addWidget(self.label_5)
-
         self.verticalLayoutWidget_2 = QWidget(self.groupBox)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
         self.verticalLayoutWidget_2.setGeometry(QRect(120, 30, 131, 211))
@@ -137,28 +131,11 @@ class Ui_OutputDialog(object):
 
         self.verticalLayout_2.addWidget(self.NameLabel)
 
-        self.MemberLabel = QLabel(self.verticalLayoutWidget_2)
-        self.MemberLabel.setObjectName(u"MemberLabel")
-        self.MemberLabel.setFont(font4)
+        self.MemberIDLabel = QLabel(self.verticalLayoutWidget_2)
+        self.MemberIDLabel.setObjectName(u"MemberIDLabel")
+        self.MemberIDLabel.setFont(font4)
 
-        self.verticalLayout_2.addWidget(self.MemberLabel)
-
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.HoursLabel = QLabel(self.verticalLayoutWidget_2)
-        self.HoursLabel.setObjectName(u"HoursLabel")
-        self.HoursLabel.setFont(font4)
-
-        self.horizontalLayout_2.addWidget(self.HoursLabel)
-
-        self.MinLabel = QLabel(self.verticalLayoutWidget_2)
-        self.MinLabel.setObjectName(u"MinLabel")
-        self.MinLabel.setFont(font4)
-
-        self.horizontalLayout_2.addWidget(self.MinLabel)
-
-
-        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+        self.verticalLayout_2.addWidget(self.MemberIDLabel)
 
 
         self.retranslateUi(OutputDialog)
@@ -177,10 +154,7 @@ class Ui_OutputDialog(object):
         self.groupBox.setTitle(QCoreApplication.translate("OutputDialog", u"Details", None))
         self.label_3.setText(QCoreApplication.translate("OutputDialog", u"Name : ", None))
         self.label_4.setText(QCoreApplication.translate("OutputDialog", u"Member ID :", None))
-        self.label_5.setText(QCoreApplication.translate("OutputDialog", u"Clocked Time : ", None))
         self.NameLabel.setText("")
-        self.MemberLabel.setText("")
-        self.HoursLabel.setText("")
-        self.MinLabel.setText("")
+        self.MemberIDLabel.setText("")
     # retranslateUi
 
