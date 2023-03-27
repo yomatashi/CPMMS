@@ -1,5 +1,3 @@
-import sys
-
 from PySide6.QtWidgets import QWidget, QDialog
 from PySide6.QtGui import QIcon
 from ui_memberVerificationScreen import Ui_Form
@@ -16,12 +14,12 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.btn_facial_recog.clicked.connect(self.openFacialRecognitionProgram)
 
         self.facial_recog = facialRecog()
+        self.Videocapture_ = "0"
     
     def openFacialRecognitionProgram(self):
-        ret = self.facial_recog.exec()
+        ret = self.facial_recog.show()
+        self.facial_recog.startVideo(self.Videocapture_)
         if(ret == QDialog.Accepted):
-            # self.info_label.setText("Your position is " + self.facial_recog.position +
-            #                      " and your favorite os is " + self.facial_recog.favorite_os)
             print("Dialog accepted")
         else:
             print("Dialog rejected")

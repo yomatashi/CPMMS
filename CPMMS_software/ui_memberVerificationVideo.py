@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'outputwindow.ui'
+## Form generated from reading UI file 'memberVerificationVideo.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QDialog, QGridLayout, QGroupBox,
     QHBoxLayout, QLabel, QPushButton, QSizePolicy,
     QVBoxLayout, QWidget)
-import resource_rc
+import resources_rc
 
 class Ui_OutputDialog(object):
     def setupUi(self, OutputDialog):
@@ -45,23 +45,16 @@ class Ui_OutputDialog(object):
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.ClockInButton = QPushButton(self.horizontalLayoutWidget)
-        self.ClockInButton.setObjectName(u"ClockInButton")
+        self.btn_verify = QPushButton(self.horizontalLayoutWidget)
+        self.btn_verify.setObjectName(u"btn_verify")
         font1 = QFont()
         font1.setFamilies([u"Roboto Condensed Light"])
         font1.setPointSize(10)
         font1.setBold(True)
-        self.ClockInButton.setFont(font1)
-        self.ClockInButton.setCheckable(True)
+        self.btn_verify.setFont(font1)
+        self.btn_verify.setCheckable(True)
 
-        self.horizontalLayout.addWidget(self.ClockInButton)
-
-        self.ClockOutButton = QPushButton(self.horizontalLayoutWidget)
-        self.ClockOutButton.setObjectName(u"ClockOutButton")
-        self.ClockOutButton.setFont(font1)
-        self.ClockOutButton.setCheckable(True)
-
-        self.horizontalLayout.addWidget(self.ClockOutButton)
+        self.horizontalLayout.addWidget(self.btn_verify)
 
         self.gridLayoutWidget = QWidget(OutputDialog)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
@@ -106,7 +99,7 @@ class Ui_OutputDialog(object):
         self.groupBox.setGeometry(QRect(660, 110, 271, 271))
         self.verticalLayoutWidget = QWidget(self.groupBox)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(30, 30, 97, 211))
+        self.verticalLayoutWidget.setGeometry(QRect(30, 30, 114, 211))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -144,11 +137,11 @@ class Ui_OutputDialog(object):
 
         self.verticalLayout_2.addWidget(self.NameLabel)
 
-        self.StatusLabel = QLabel(self.verticalLayoutWidget_2)
-        self.StatusLabel.setObjectName(u"StatusLabel")
-        self.StatusLabel.setFont(font4)
+        self.MemberLabel = QLabel(self.verticalLayoutWidget_2)
+        self.MemberLabel.setObjectName(u"MemberLabel")
+        self.MemberLabel.setFont(font4)
 
-        self.verticalLayout_2.addWidget(self.StatusLabel)
+        self.verticalLayout_2.addWidget(self.MemberLabel)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -176,18 +169,17 @@ class Ui_OutputDialog(object):
     def retranslateUi(self, OutputDialog):
         OutputDialog.setWindowTitle(QCoreApplication.translate("OutputDialog", u"Face Recognition Attendance App", None))
         self.imgLabel.setText("")
-        self.ClockInButton.setText(QCoreApplication.translate("OutputDialog", u"Clock In", None))
-        self.ClockOutButton.setText(QCoreApplication.translate("OutputDialog", u"Clock Out", None))
+        self.btn_verify.setText(QCoreApplication.translate("OutputDialog", u"Verify Membership", None))
         self.label.setText(QCoreApplication.translate("OutputDialog", u"Date :", None))
         self.Date_Label.setText(QCoreApplication.translate("OutputDialog", u"-", None))
         self.label_2.setText(QCoreApplication.translate("OutputDialog", u"Time :", None))
         self.Time_Label.setText(QCoreApplication.translate("OutputDialog", u"-", None))
         self.groupBox.setTitle(QCoreApplication.translate("OutputDialog", u"Details", None))
         self.label_3.setText(QCoreApplication.translate("OutputDialog", u"Name : ", None))
-        self.label_4.setText(QCoreApplication.translate("OutputDialog", u"Status :", None))
+        self.label_4.setText(QCoreApplication.translate("OutputDialog", u"Member ID :", None))
         self.label_5.setText(QCoreApplication.translate("OutputDialog", u"Clocked Time : ", None))
         self.NameLabel.setText("")
-        self.StatusLabel.setText("")
+        self.MemberLabel.setText("")
         self.HoursLabel.setText("")
         self.MinLabel.setText("")
     # retranslateUi

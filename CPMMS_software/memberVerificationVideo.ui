@@ -33,7 +33,7 @@
    <string>Face Recognition Attendance App</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resource.qrc">
+   <iconset resource="../../../Downloads/Face-Recogntion-PyQt-master/Face-Recogntion-PyQt-master/Face_Detection_PyQt_Final/resource.qrc">
     <normaloff>:/icon/icon.png</normaloff>:/icon/icon.png</iconset>
   </property>
   <widget class="QLabel" name="imgLabel">
@@ -72,7 +72,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="ClockInButton">
+     <widget class="QPushButton" name="btn_verify">
       <property name="font">
        <font>
         <family>Roboto Condensed Light</family>
@@ -82,25 +82,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Clock In</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="ClockOutButton">
-      <property name="font">
-       <font>
-        <family>Roboto Condensed Light</family>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Clock Out</string>
+       <string>Verify Membership</string>
       </property>
       <property name="checkable">
        <bool>true</bool>
@@ -198,7 +180,7 @@
      <rect>
       <x>30</x>
       <y>30</y>
-      <width>97</width>
+      <width>114</width>
       <height>211</height>
      </rect>
     </property>
@@ -229,7 +211,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Status :</string>
+        <string>Member ID :</string>
        </property>
       </widget>
      </item>
@@ -276,7 +258,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="StatusLabel">
+      <widget class="QLabel" name="MemberLabel">
        <property name="font">
         <font>
          <family>Roboto Condensed Light</family>
@@ -329,7 +311,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="resource.qrc"/>
+  <include location="../../../Downloads/Face-Recogntion-PyQt-master/Face-Recogntion-PyQt-master/Face_Detection_PyQt_Final/resource.qrc"/>
  </resources>
  <connections/>
 </ui>
