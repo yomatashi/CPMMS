@@ -25,14 +25,14 @@ class Ui_OutputDialog(object):
         if not OutputDialog.objectName():
             OutputDialog.setObjectName(u"OutputDialog")
         OutputDialog.resize(951, 591)
-        OutputDialog.setMinimumSize(QSize(0, 0))
-        OutputDialog.setMaximumSize(QSize(1280, 720))
+        OutputDialog.setMinimumSize(QSize(951, 591))
+        OutputDialog.setMaximumSize(QSize(951, 951))
         font = QFont()
         font.setFamilies([u"Calibri"])
         font.setBold(True)
         OutputDialog.setFont(font)
         icon = QIcon()
-        icon.addFile(u":/icon/icon.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/icons/activity.svg", QSize(), QIcon.Normal, QIcon.Off)
         OutputDialog.setWindowIcon(icon)
         self.imgLabel = QLabel(OutputDialog)
         self.imgLabel.setObjectName(u"imgLabel")
@@ -52,6 +52,7 @@ class Ui_OutputDialog(object):
         font1.setPointSize(10)
         font1.setBold(True)
         self.btn_verify.setFont(font1)
+        self.btn_verify.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_verify.setCheckable(True)
 
         self.horizontalLayout.addWidget(self.btn_verify)
@@ -144,7 +145,7 @@ class Ui_OutputDialog(object):
     # setupUi
 
     def retranslateUi(self, OutputDialog):
-        OutputDialog.setWindowTitle(QCoreApplication.translate("OutputDialog", u"Face Recognition Attendance App", None))
+        OutputDialog.setWindowTitle(QCoreApplication.translate("OutputDialog", u"Facial Recognition App CPMMS", None))
         self.imgLabel.setText("")
         self.btn_verify.setText(QCoreApplication.translate("OutputDialog", u"Verify Membership", None))
         self.label.setText(QCoreApplication.translate("OutputDialog", u"Date :", None))

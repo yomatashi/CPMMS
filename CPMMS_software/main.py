@@ -18,6 +18,6 @@ from screens.widget_memberVerificationScreen import WidgetMemberVerificationScre
 
 app = QtWidgets.QApplication(sys.argv)
 window = WidgetMemberVerificationScreen()
-window.setWindowTitle("CPMMS")
+# window.setWindowTitle("CPMMS")
 window.show()
 sys.exit(app.exec())

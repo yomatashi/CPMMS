@@ -12,14 +12,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>0</width>
-    <height>0</height>
+    <width>951</width>
+    <height>591</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1280</width>
-    <height>720</height>
+    <width>951</width>
+    <height>951</height>
    </size>
   </property>
   <property name="font">
@@ -30,11 +30,11 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Face Recognition Attendance App</string>
+   <string>Facial Recognition App CPMMS</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../Downloads/Face-Recogntion-PyQt-master/Face-Recogntion-PyQt-master/Face_Detection_PyQt_Final/resource.qrc">
-    <normaloff>:/icon/icon.png</normaloff>:/icon/icon.png</iconset>
+   <iconset resource="../resources.qrc">
+    <normaloff>:/icons/activity.svg</normaloff>:/icons/activity.svg</iconset>
   </property>
   <widget class="QLabel" name="imgLabel">
    <property name="geometry">
@@ -80,6 +80,9 @@
         <weight>75</weight>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="text">
        <string>Verify Membership</string>
@@ -262,7 +265,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="../../../Downloads/Face-Recogntion-PyQt-master/Face-Recogntion-PyQt-master/Face_Detection_PyQt_Final/resource.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>

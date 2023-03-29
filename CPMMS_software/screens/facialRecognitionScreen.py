@@ -85,7 +85,7 @@ class facialRecog(QDialog, Ui_OutputDialog):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.setWindowTitle("Facial Recognition App CPMMS")
+        # self.setWindowTitle("Facial Recognition App CPMMS")
 
         timer  = QTimer(self)
         timer.timeout.connect(self.TimeDate)
