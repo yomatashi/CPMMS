@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QDialog
 # from PySide6.QtGui import QIcon
-from ui_memberVerificationScreen import Ui_Form
-from facialRecognitionScreen  import facialRecog
+from ui.ui_memberVerificationScreen import Ui_Form
+from screens.facialRecognitionScreen  import facialRecog
 from PySide6.QtCore import QTimer, QDate
 import datetime
 
@@ -14,7 +14,7 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.btn_facial_recog.clicked.connect(self.openFacialRecognitionProgram)
 
         self.facial_recog = facialRecog()
-        self.Videocapture_ = "0"
+        self.Videocapture_ = "1"
 
         timer  = QTimer(self)
         timer.timeout.connect(self.TimeDate)
