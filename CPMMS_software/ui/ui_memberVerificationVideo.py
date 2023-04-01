@@ -52,7 +52,6 @@ class Ui_OutputDialog(object):
         font1.setPointSize(10)
         font1.setBold(True)
         self.btn_verify.setFont(font1)
-        self.btn_verify.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_verify.setCheckable(True)
 
         self.horizontalLayout.addWidget(self.btn_verify)
@@ -147,7 +146,7 @@ class Ui_OutputDialog(object):
     def retranslateUi(self, OutputDialog):
         OutputDialog.setWindowTitle(QCoreApplication.translate("OutputDialog", u"Facial Recognition App CPMMS", None))
         self.imgLabel.setText("")
-        self.btn_verify.setText(QCoreApplication.translate("OutputDialog", u"Verify Membership", None))
+        self.btn_verify.setText(QCoreApplication.translate("OutputDialog", u"Verify member", None))
         self.label.setText(QCoreApplication.translate("OutputDialog", u"Date :", None))
         self.Date_Label.setText(QCoreApplication.translate("OutputDialog", u"-", None))
         self.label_2.setText(QCoreApplication.translate("OutputDialog", u"Time :", None))

@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
-    QLabel, QLineEdit, QPushButton, QSizePolicy,
-    QStackedWidget, QToolButton, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+    QHBoxLayout, QLabel, QLineEdit, QPushButton,
+    QSizePolicy, QStackedWidget, QToolButton, QVBoxLayout,
+    QWidget)
 import resources_rc
 
 class Ui_Form(object):
@@ -143,9 +144,135 @@ class Ui_Form(object):
 
         self.gridLayout.addWidget(self.sidebar, 0, 0, 3, 1)
 
+        self.header = QFrame(Form)
+        self.header.setObjectName(u"header")
+        self.header.setMinimumSize(QSize(0, 180))
+        self.header.setMaximumSize(QSize(16777215, 180))
+        self.header.setStyleSheet(u"background-color: rgba(217,217,217,255)")
+        self.header.setFrameShape(QFrame.StyledPanel)
+        self.header.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout = QHBoxLayout(self.header)
+        self.horizontalLayout.setSpacing(12)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.btn_member_manager = QPushButton(self.header)
+        self.btn_member_manager.setObjectName(u"btn_member_manager")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.btn_member_manager.sizePolicy().hasHeightForWidth())
+        self.btn_member_manager.setSizePolicy(sizePolicy1)
+        self.btn_member_manager.setMaximumSize(QSize(16777215, 16777215))
+        self.btn_member_manager.setFont(font2)
+        self.btn_member_manager.setCursor(QCursor(Qt.PointingHandCursor))
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/user.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_member_manager.setIcon(icon1)
+        self.btn_member_manager.setIconSize(QSize(40, 40))
+        self.btn_member_manager.setCheckable(False)
+
+        self.horizontalLayout.addWidget(self.btn_member_manager)
+
+        self.btn_item_manager = QPushButton(self.header)
+        self.btn_item_manager.setObjectName(u"btn_item_manager")
+        sizePolicy1.setHeightForWidth(self.btn_item_manager.sizePolicy().hasHeightForWidth())
+        self.btn_item_manager.setSizePolicy(sizePolicy1)
+        self.btn_item_manager.setMaximumSize(QSize(16777215, 16777215))
+        self.btn_item_manager.setFont(font2)
+        self.btn_item_manager.setCursor(QCursor(Qt.PointingHandCursor))
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/folder.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_item_manager.setIcon(icon2)
+        self.btn_item_manager.setIconSize(QSize(40, 40))
+        self.btn_item_manager.setCheckable(False)
+
+        self.horizontalLayout.addWidget(self.btn_item_manager)
+
+        self.btn_checkout = QPushButton(self.header)
+        self.btn_checkout.setObjectName(u"btn_checkout")
+        sizePolicy1.setHeightForWidth(self.btn_checkout.sizePolicy().hasHeightForWidth())
+        self.btn_checkout.setSizePolicy(sizePolicy1)
+        self.btn_checkout.setFont(font2)
+        self.btn_checkout.setCursor(QCursor(Qt.PointingHandCursor))
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/shopping-cart.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_checkout.setIcon(icon3)
+        self.btn_checkout.setIconSize(QSize(40, 40))
+        self.btn_checkout.setCheckable(False)
+
+        self.horizontalLayout.addWidget(self.btn_checkout)
+
+        self.btn_member_verification = QPushButton(self.header)
+        self.btn_member_verification.setObjectName(u"btn_member_verification")
+        sizePolicy1.setHeightForWidth(self.btn_member_verification.sizePolicy().hasHeightForWidth())
+        self.btn_member_verification.setSizePolicy(sizePolicy1)
+        self.btn_member_verification.setFont(font2)
+        self.btn_member_verification.setCursor(QCursor(Qt.PointingHandCursor))
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/user-check.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_member_verification.setIcon(icon4)
+        self.btn_member_verification.setIconSize(QSize(40, 40))
+        self.btn_member_verification.setCheckable(False)
+        self.btn_member_verification.setChecked(False)
+        self.btn_member_verification.setAutoDefault(False)
+
+        self.horizontalLayout.addWidget(self.btn_member_verification)
+
+
+        self.gridLayout.addWidget(self.header, 0, 1, 1, 1)
+
         self.stackedWidget = QStackedWidget(Form)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setStyleSheet(u"background-color: rgba(205,241,239,255)")
+        self.welcomePage = QWidget()
+        self.welcomePage.setObjectName(u"welcomePage")
+        self.verticalLayout_3 = QVBoxLayout(self.welcomePage)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.frame_9 = QFrame(self.welcomePage)
+        self.frame_9.setObjectName(u"frame_9")
+        self.frame_9.setFrameShape(QFrame.StyledPanel)
+        self.frame_9.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_3.addWidget(self.frame_9)
+
+        self.label_10 = QLabel(self.welcomePage)
+        self.label_10.setObjectName(u"label_10")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
+        self.label_10.setSizePolicy(sizePolicy2)
+        self.label_10.setMaximumSize(QSize(16777215, 50))
+        self.label_10.setSizeIncrement(QSize(0, 0))
+        font4 = QFont()
+        font4.setBold(True)
+        self.label_10.setFont(font4)
+        self.label_10.setStyleSheet(u"color: rgba(194,96,155,255)")
+        self.label_10.setTextFormat(Qt.AutoText)
+        self.label_10.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_3.addWidget(self.label_10, 0, Qt.AlignHCenter)
+
+        self.label_11 = QLabel(self.welcomePage)
+        self.label_11.setObjectName(u"label_11")
+        sizePolicy2.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
+        self.label_11.setSizePolicy(sizePolicy2)
+        self.label_11.setMaximumSize(QSize(16777215, 50))
+        self.label_11.setSizeIncrement(QSize(0, 0))
+        self.label_11.setFont(font4)
+        self.label_11.setStyleSheet(u"color: rgba(194,96,155,255)")
+        self.label_11.setTextFormat(Qt.AutoText)
+        self.label_11.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_3.addWidget(self.label_11, 0, Qt.AlignHCenter)
+
+        self.frame_10 = QFrame(self.welcomePage)
+        self.frame_10.setObjectName(u"frame_10")
+        self.frame_10.setFrameShape(QFrame.StyledPanel)
+        self.frame_10.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_3.addWidget(self.frame_10)
+
+        self.stackedWidget.addWidget(self.welcomePage)
         self.verificationMethod = QWidget()
         self.verificationMethod.setObjectName(u"verificationMethod")
         self.verticalLayout = QVBoxLayout(self.verificationMethod)
@@ -162,11 +289,8 @@ class Ui_Form(object):
 
         self.label_7 = QLabel(self.verificationMethod)
         self.label_7.setObjectName(u"label_7")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.label_7.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
+        self.label_7.setSizePolicy(sizePolicy2)
         self.label_7.setMaximumSize(QSize(16777215, 50))
         self.label_7.setSizeIncrement(QSize(0, 0))
         self.label_7.setStyleSheet(u"")
@@ -177,8 +301,8 @@ class Ui_Form(object):
 
         self.label_8 = QLabel(self.verificationMethod)
         self.label_8.setObjectName(u"label_8")
-        sizePolicy1.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
-        self.label_8.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
+        self.label_8.setSizePolicy(sizePolicy2)
         self.label_8.setMaximumSize(QSize(16777215, 50))
         self.label_8.setSizeIncrement(QSize(0, 0))
         self.label_8.setStyleSheet(u"")
@@ -189,8 +313,8 @@ class Ui_Form(object):
 
         self.btn_ic = QPushButton(self.verificationMethod)
         self.btn_ic.setObjectName(u"btn_ic")
-        sizePolicy1.setHeightForWidth(self.btn_ic.sizePolicy().hasHeightForWidth())
-        self.btn_ic.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.btn_ic.sizePolicy().hasHeightForWidth())
+        self.btn_ic.setSizePolicy(sizePolicy2)
         self.btn_ic.setMinimumSize(QSize(0, 0))
         self.btn_ic.setMaximumSize(QSize(16777215, 50))
         self.btn_ic.setSizeIncrement(QSize(0, 0))
@@ -204,8 +328,8 @@ class Ui_Form(object):
 
         self.btn_facial_recog = QPushButton(self.verificationMethod)
         self.btn_facial_recog.setObjectName(u"btn_facial_recog")
-        sizePolicy1.setHeightForWidth(self.btn_facial_recog.sizePolicy().hasHeightForWidth())
-        self.btn_facial_recog.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.btn_facial_recog.sizePolicy().hasHeightForWidth())
+        self.btn_facial_recog.setSizePolicy(sizePolicy2)
         self.btn_facial_recog.setMaximumSize(QSize(16777215, 50))
         self.btn_facial_recog.setFont(font)
         self.btn_facial_recog.setCursor(QCursor(Qt.PointingHandCursor))
@@ -213,6 +337,14 @@ class Ui_Form(object):
 "color: rgb(255, 255, 255)")
 
         self.verticalLayout.addWidget(self.btn_facial_recog, 0, Qt.AlignHCenter)
+
+        self.cam_input = QComboBox(self.verificationMethod)
+        self.cam_input.addItem("")
+        self.cam_input.addItem("")
+        self.cam_input.setObjectName(u"cam_input")
+        self.cam_input.setMinimumSize(QSize(0, 25))
+
+        self.verticalLayout.addWidget(self.cam_input, 0, Qt.AlignHCenter)
 
         self.frame_4 = QFrame(self.verificationMethod)
         self.frame_4.setObjectName(u"frame_4")
@@ -254,8 +386,8 @@ class Ui_Form(object):
 
         self.label_9 = QLabel(self.ICMethod)
         self.label_9.setObjectName(u"label_9")
-        sizePolicy1.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
-        self.label_9.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy2)
         self.label_9.setMaximumSize(QSize(16777215, 50))
         self.label_9.setSizeIncrement(QSize(0, 0))
         self.label_9.setStyleSheet(u"")
@@ -291,87 +423,11 @@ class Ui_Form(object):
 
         self.gridLayout.addWidget(self.stackedWidget, 1, 1, 1, 1)
 
-        self.header = QFrame(Form)
-        self.header.setObjectName(u"header")
-        self.header.setMinimumSize(QSize(0, 180))
-        self.header.setMaximumSize(QSize(16777215, 180))
-        self.header.setStyleSheet(u"background-color: rgba(217,217,217,255)")
-        self.header.setFrameShape(QFrame.StyledPanel)
-        self.header.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout = QHBoxLayout(self.header)
-        self.horizontalLayout.setSpacing(12)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.btn_member_manager = QPushButton(self.header)
-        self.btn_member_manager.setObjectName(u"btn_member_manager")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.btn_member_manager.sizePolicy().hasHeightForWidth())
-        self.btn_member_manager.setSizePolicy(sizePolicy2)
-        self.btn_member_manager.setMaximumSize(QSize(16777215, 16777215))
-        self.btn_member_manager.setFont(font2)
-        self.btn_member_manager.setCursor(QCursor(Qt.PointingHandCursor))
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/user.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_member_manager.setIcon(icon1)
-        self.btn_member_manager.setIconSize(QSize(40, 40))
-        self.btn_member_manager.setCheckable(False)
-
-        self.horizontalLayout.addWidget(self.btn_member_manager)
-
-        self.btn_item_manager = QPushButton(self.header)
-        self.btn_item_manager.setObjectName(u"btn_item_manager")
-        sizePolicy2.setHeightForWidth(self.btn_item_manager.sizePolicy().hasHeightForWidth())
-        self.btn_item_manager.setSizePolicy(sizePolicy2)
-        self.btn_item_manager.setMaximumSize(QSize(16777215, 16777215))
-        self.btn_item_manager.setFont(font2)
-        self.btn_item_manager.setCursor(QCursor(Qt.PointingHandCursor))
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/folder.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_item_manager.setIcon(icon2)
-        self.btn_item_manager.setIconSize(QSize(40, 40))
-        self.btn_item_manager.setCheckable(False)
-
-        self.horizontalLayout.addWidget(self.btn_item_manager)
-
-        self.btn_checkout = QPushButton(self.header)
-        self.btn_checkout.setObjectName(u"btn_checkout")
-        sizePolicy2.setHeightForWidth(self.btn_checkout.sizePolicy().hasHeightForWidth())
-        self.btn_checkout.setSizePolicy(sizePolicy2)
-        self.btn_checkout.setFont(font2)
-        self.btn_checkout.setCursor(QCursor(Qt.PointingHandCursor))
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/shopping-cart.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_checkout.setIcon(icon3)
-        self.btn_checkout.setIconSize(QSize(40, 40))
-        self.btn_checkout.setCheckable(False)
-
-        self.horizontalLayout.addWidget(self.btn_checkout)
-
-        self.btn_member_verification = QPushButton(self.header)
-        self.btn_member_verification.setObjectName(u"btn_member_verification")
-        sizePolicy2.setHeightForWidth(self.btn_member_verification.sizePolicy().hasHeightForWidth())
-        self.btn_member_verification.setSizePolicy(sizePolicy2)
-        self.btn_member_verification.setFont(font2)
-        self.btn_member_verification.setCursor(QCursor(Qt.PointingHandCursor))
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/user-check.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_member_verification.setIcon(icon4)
-        self.btn_member_verification.setIconSize(QSize(40, 40))
-        self.btn_member_verification.setCheckable(False)
-        self.btn_member_verification.setChecked(False)
-        self.btn_member_verification.setAutoDefault(False)
-
-        self.horizontalLayout.addWidget(self.btn_member_verification)
-
-
-        self.gridLayout.addWidget(self.header, 0, 1, 1, 1)
-
 
         self.retranslateUi(Form)
 
-        self.stackedWidget.setCurrentIndex(0)
         self.btn_member_verification.setDefault(False)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -386,16 +442,21 @@ class Ui_Form(object):
         self.btn_edit_profile.setText(QCoreApplication.translate("Form", u"Edit profile", None))
         self.Date_Label.setText("")
         self.Time_Label.setText("")
-        self.label_7.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Member verification</span></p></body></html>", None))
-        self.label_8.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt;\">Select method to verify membership</span></p></body></html>", None))
-        self.btn_ic.setText(QCoreApplication.translate("Form", u"IC NUMBER VERIFICATION", None))
-        self.btn_facial_recog.setText(QCoreApplication.translate("Form", u"FACIAL RECOGNITION VERIFICATION", None))
-        self.input_ICNum.setPlaceholderText("")
-        self.label_9.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt;\">Insert member IC number</span></p></body></html>", None))
-        self.pushButton.setText(QCoreApplication.translate("Form", u"Verify member", None))
         self.btn_member_manager.setText(QCoreApplication.translate("Form", u"Member Manager", None))
         self.btn_item_manager.setText(QCoreApplication.translate("Form", u"Item Manager", None))
         self.btn_checkout.setText(QCoreApplication.translate("Form", u"Checkout", None))
         self.btn_member_verification.setText(QCoreApplication.translate("Form", u"Member Verification", None))
+        self.label_10.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt;\">Welcome to Consult Pharmacy Membership</span></p></body></html>", None))
+        self.label_11.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt;\">Management System (CPMMS)</span></p></body></html>", None))
+        self.label_7.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Member verification</span></p></body></html>", None))
+        self.label_8.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt;\">Select method to verify membership</span></p></body></html>", None))
+        self.btn_ic.setText(QCoreApplication.translate("Form", u"IC NUMBER VERIFICATION", None))
+        self.btn_facial_recog.setText(QCoreApplication.translate("Form", u"FACIAL RECOGNITION VERIFICATION", None))
+        self.cam_input.setItemText(0, QCoreApplication.translate("Form", u"Integrated Camera", None))
+        self.cam_input.setItemText(1, QCoreApplication.translate("Form", u"External Camera (USB)", None))
+
+        self.input_ICNum.setPlaceholderText("")
+        self.label_9.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt;\">Insert member IC number</span></p></body></html>", None))
+        self.pushButton.setText(QCoreApplication.translate("Form", u"Verify member", None))
     # retranslateUi
 

@@ -8,7 +8,6 @@ import datetime
 import os
 import numpy as np
 import time
-import sys
 
 class Thread(QThread):
     updateFrame = Signal(QImage)
@@ -25,15 +24,17 @@ class Thread(QThread):
 
     def run(self):
 
+        # images data path
         path = 'ImagesMembers'
         if not os.path.exists(path):
             os.mkdir(path)
-        # known face encoding and known face name list
+        
         images = []
         self.class_names = []
         self.encode_list = []
         members_list = os.listdir(path)
 
+        # known face encoding and known face name list
         for cl in members_list:
             cur_img = cv2.imread(f'{path}/{cl}')
             images.append(cur_img)
@@ -45,6 +46,8 @@ class Thread(QThread):
             self.encode_list.append(encodes_cur_frame)
 
         self.cap = cv2.VideoCapture(self.cam_index)
+        self.cap.set(3, 640) # set width to 640
+        self.cap.set(4, 480) # set height to 480
         while self.status:
 
             ret, frame = self.cap.read()
@@ -53,7 +56,7 @@ class Thread(QThread):
                 # face recognition
                 faces_cur_frame = face_recognition.face_locations(frame)
                 encodes_cur_frame = face_recognition.face_encodings(frame, faces_cur_frame)
-                # count = 0
+
                 for encodeFace, faceLoc in zip(encodes_cur_frame, faces_cur_frame):
                     match = face_recognition.compare_faces(self.encode_list, encodeFace, tolerance=0.50)
                     face_dis = face_recognition.face_distance(self.encode_list, encodeFace)
@@ -78,25 +81,23 @@ class Thread(QThread):
 
             # Emit signal
             self.updateFrame.emit(scaled_img)
-        sys.exit(-1)
+        # sys.exit(-1)
 
 class facialRecog(QDialog, Ui_OutputDialog):
 
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # self.setWindowTitle("Facial Recognition App CPMMS")
 
+        # date-time 
         timer  = QTimer(self)
         timer.timeout.connect(self.TimeDate)
         timer.start(1000)
         
         # Thread in charge of updating the image
         self.th = Thread(self)
-        self.th.finished.connect(self.close)
         self.th.updateFrame.connect(self.setImage)
         self.th.updateName.connect(self.setName)
-        self.btn_verify.clicked.connect(self.verify_membership)
 
     def TimeDate(self):
         #Update time
@@ -110,27 +111,25 @@ class facialRecog(QDialog, Ui_OutputDialog):
         print("Closing camera...")
         self.th.cap.release()
         cv2.destroyAllWindows()
-        self.status = False
+        self.th.status = False
         self.th.terminate()
         # Give time for the thread to finish
         time.sleep(1)
 
     @Slot()
-    def verify_membership():
-        print("Verify member button is clicked")
-
-    @Slot()
     def startVideo(self, camera_name):
         print("Starting camera...")
         self.th.start()
+        self.th.status = True
         self.th.set_camera_index(camera_name)
 
+    # set member name if face is recognized
     @Slot(str)
     def setName(self, name):
         self.NameLabel.setText(name)
 
+    # update image captured from camera device
     @Slot(QImage)
     def setImage(self, image):
         self.imgLabel.setPixmap(QPixmap.fromImage(image))
-        # self.imgLabel.setScaledContents(True)
     

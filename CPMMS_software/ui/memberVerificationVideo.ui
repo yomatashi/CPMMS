@@ -81,11 +81,8 @@
         <bold>true</bold>
        </font>
       </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
       <property name="text">
-       <string>Verify Membership</string>
+       <string>Verify member</string>
       </property>
       <property name="checkable">
        <bool>true</bool>
