@@ -1,8 +1,9 @@
-from PySide6.QtWidgets import QWidget, QDialog
+from PySide6.QtWidgets import QWidget, QDialog, QMessageBox
 from PySide6.QtGui import QRegularExpressionValidator
-from ui.ui_memberVerificationScreen import Ui_Form
+from UI.ui_memberVerificationScreen import Ui_Form
 from screens.facialRecognitionScreen  import facialRecog
 from PySide6.QtCore import QTimer, QDate, QRegularExpression
+from DB.connectionDB import FirebaseAccessor
 import datetime
 
 class WidgetMemberVerificationScreen(QWidget, Ui_Form):
@@ -18,6 +19,7 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         regex = QRegularExpression("[0-9]{12}")
         validator = QRegularExpressionValidator(regex)
         self.input_ICNum.setValidator(validator)
+        self.btn_verify.clicked.connect(self.check_members)
 
         # facial recognition method
         self.facial_recog = facialRecog()
@@ -29,6 +31,26 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         timer.timeout.connect(self.TimeDate)
         timer.start(1000)
     
+    def check_members(self):
+        value = self.input_ICNum.text()
+        get_members = FirebaseAccessor('Member').read_all()
+        has_member = 0
+        for member in get_members:
+            if member['IC'] == value:
+                has_member = 1
+                self.member_data = member
+                break
+        if has_member == 0:
+            self.lbl_error_msg.setText("No member found!")
+        else:
+            self.lbl_error_msg.setText("")
+            message = "Name: "+ self.member_data['fullName'] + "\nIC number: " + self.member_data['IC'] + "\nPoints: " + str(self.member_data['points']) + "\n\nSet this member for checkout process?"
+            ret = QMessageBox.information(self, "Member information", message, QMessageBox.Yes | QMessageBox.No)
+            if ret == QMessageBox.Yes:
+                print("User chose Yes")
+            else:
+                print("User chose No")
+
     def set_camera(self, text):
         if text == "External Camera (USB)":
             self.Videocapture_ = "1"
@@ -44,9 +66,6 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.Time_Label.setText(current_time)
 
     def openFacialRecognitionProgram(self):
-        ret = self.facial_recog.show()
+        self.facial_recog.resetLabel()
         self.facial_recog.startVideo(self.Videocapture_)
-        if(ret == QDialog.Accepted):
-            print("Dialog accepted")
-        else:
-            print("Dialog rejected")
+        self.facial_recog.exec()

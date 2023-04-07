@@ -1,7 +1,8 @@
-from PySide6.QtWidgets import QDialog
+from PySide6.QtWidgets import QDialog, QMessageBox
 from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtCore import Slot, QDate, QThread, Signal, Qt, QTimer
-from ui.ui_memberVerificationVideo import Ui_OutputDialog
+from UI.ui_memberVerificationVideo import Ui_OutputDialog
+from DB.connectionDB import FirebaseAccessor
 import cv2
 import face_recognition
 import datetime
@@ -63,11 +64,12 @@ class Thread(QThread):
                     # name = "unknown"
                     best_match_index = np.argmin(face_dis)
                     if match[best_match_index]:
-                        name = self.class_names[best_match_index].upper()
+                        name = self.class_names[best_match_index]
+                        dispName = name.split("-")[0]
                         y1, x2, y2, x1 = faceLoc
                         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                         cv2.rectangle(frame, (x1, y2 - 20), (x2, y2), (0, 255, 0), cv2.FILLED)
-                        cv2.putText(frame, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1)
+                        cv2.putText(frame, dispName, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1)
                     self.updateName.emit(name)
             except Exception as e:
                 print(e)
@@ -88,6 +90,8 @@ class facialRecog(QDialog, Ui_OutputDialog):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.imgLabel.setAlignment(Qt.AlignCenter)
+        self.btn_verify.clicked.connect(self.verifyMember)
 
         # date-time 
         timer  = QTimer(self)
@@ -116,6 +120,26 @@ class facialRecog(QDialog, Ui_OutputDialog):
         # Give time for the thread to finish
         time.sleep(1)
 
+    def verifyMember(self):
+        if self.MemberIDLabel.text() != "":
+            member_data = FirebaseAccessor('Member').read(self.MemberIDLabel.text())
+            message = "Name: "+ member_data['fullName'] + "\nIC number: " + member_data['IC'] + "\nPoints: " + str(member_data['points']) + "\n\nSet this member for checkout process?"
+            ret = QMessageBox.information(self, "Member information", message, QMessageBox.Yes | QMessageBox.No)
+            if ret == QMessageBox.Yes:
+                self.accept()
+                self.closeEvent(event=exit)
+                print("User chose Yes")
+            else:
+                print("User chose No")
+        else:
+            QMessageBox.warning(self, "Member information", "Member not found!", QMessageBox.Ok)
+
+    @Slot()
+    def resetLabel(self):
+        self.NameLabel.setText("")
+        self.MemberIDLabel.setText("")
+        self.imgLabel.setText("Please wait for camera to turn on...")
+
     @Slot()
     def startVideo(self, camera_name):
         print("Starting camera...")
@@ -126,7 +150,9 @@ class facialRecog(QDialog, Ui_OutputDialog):
     # set member name if face is recognized
     @Slot(str)
     def setName(self, name):
-        self.NameLabel.setText(name)
+        sprString = name.split("-")
+        self.NameLabel.setText(sprString[0])
+        self.MemberIDLabel.setText(sprString[1])
 
     # update image captured from camera device
     @Slot(QImage)

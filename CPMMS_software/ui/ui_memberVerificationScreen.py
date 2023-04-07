@@ -396,14 +396,14 @@ class Ui_Form(object):
 
         self.gridLayout_3.addWidget(self.label_9, 1, 1, 1, 2, Qt.AlignHCenter)
 
-        self.pushButton = QPushButton(self.ICMethod)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(140, 40))
-        self.pushButton.setMaximumSize(QSize(140, 40))
-        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton.setStyleSheet(u"background-color: rgba(217,217,217,255)")
+        self.btn_verify = QPushButton(self.ICMethod)
+        self.btn_verify.setObjectName(u"btn_verify")
+        self.btn_verify.setMinimumSize(QSize(140, 40))
+        self.btn_verify.setMaximumSize(QSize(140, 40))
+        self.btn_verify.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_verify.setStyleSheet(u"background-color: rgba(217,217,217,255)")
 
-        self.gridLayout_3.addWidget(self.pushButton, 2, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.btn_verify, 2, 2, 1, 1)
 
         self.frame_7 = QFrame(self.ICMethod)
         self.frame_7.setObjectName(u"frame_7")
@@ -418,6 +418,13 @@ class Ui_Form(object):
         self.frame_8.setFrameShadow(QFrame.Raised)
 
         self.gridLayout_3.addWidget(self.frame_8, 2, 3, 1, 1)
+
+        self.lbl_error_msg = QLabel(self.ICMethod)
+        self.lbl_error_msg.setObjectName(u"lbl_error_msg")
+        self.lbl_error_msg.setMaximumSize(QSize(16777215, 20))
+        self.lbl_error_msg.setStyleSheet(u"color: rgb(255, 0, 0)")
+
+        self.gridLayout_3.addWidget(self.lbl_error_msg, 3, 1, 1, 1)
 
         self.stackedWidget.addWidget(self.ICMethod)
 
@@ -457,6 +464,7 @@ class Ui_Form(object):
 
         self.input_ICNum.setPlaceholderText("")
         self.label_9.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:16pt;\">Insert member IC number</span></p></body></html>", None))
-        self.pushButton.setText(QCoreApplication.translate("Form", u"Verify member", None))
+        self.btn_verify.setText(QCoreApplication.translate("Form", u"Verify member", None))
+        self.lbl_error_msg.setText("")
     # retranslateUi
 
