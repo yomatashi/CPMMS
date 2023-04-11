@@ -1,13 +1,17 @@
 import firebase_admin
-from firebase_admin import credentials, firestore, storage
+from firebase_admin import credentials, firestore, storage, auth
 import os
 import DB.firebaseconfig
-
+import pyrebase
 
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate("DB/serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 bucket_name = DB.firebaseconfig.get_bucket_name()
+
+firebaseConfig = DB.firebaseconfig.get_firebase_config()
+firebase=pyrebase.initialize_app(firebaseConfig)
+auth=firebase.auth()
 
 class FirebaseMutator:
     def __init__(self, collection_name):
@@ -72,11 +76,31 @@ class FirebaseStorage:
             blob.download_to_filename(local_file_path)
         print("File downloaded!")
 
+class FirebaseAuthentication:
+    # def __init__(self):
+
+    def login(email, password):
+        try:
+            auth.sign_in_with_email_and_password(email, password)
+            return "Pass"
+        except:
+            return "Invalid email or password"
+    
+    def register(email, password):
+        try:
+            auth.create_user_with_email_and_password(email, password)
+            return "Pass"
+        except:
+            return "Email already exist"
+    
+    def getAuthEmail():
+        return auth.current_user['email']
+
 # firebase_storage = FirebaseStorage()
 #  > Upload folder to firebase storage
 # firebase_storage.upload_folder("ImagesMembers", "img")
 
-#  >Download folder from firebase storage
+# > Download folder from firebase storage
 # firebase_storage.download_folder("img", "ImagesMembers")
 
 # > Create new member

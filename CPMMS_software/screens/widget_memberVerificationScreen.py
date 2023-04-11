@@ -1,18 +1,22 @@
 from PySide6.QtWidgets import QWidget, QDialog, QMessageBox
 from PySide6.QtGui import QRegularExpressionValidator
+from PySide6.QtCore import Slot
 from UI.ui_memberVerificationScreen import Ui_Form
 from screens.facialRecognitionScreen  import facialRecog
 from PySide6.QtCore import QTimer, QDate, QRegularExpression
 from DB.connectionDB import FirebaseAccessor
+from DB.connectionDB import FirebaseAuthentication
 import datetime
+import sys
 
 class WidgetMemberVerificationScreen(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
         self.btn_member_verification.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.verificationMethod))
-        self.btn_ic.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.ICMethod))
+        self.btn_ic.clicked.connect(self.ICmethodscreen)
         self.btn_facial_recog.clicked.connect(self.openFacialRecognitionProgram)
+        self.btn_signout.clicked.connect(sys.exit)
 
         # IC number method
         self.input_ICNum.setPlaceholderText("Insert IC number here...")
@@ -30,6 +34,11 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         timer  = QTimer(self)
         timer.timeout.connect(self.TimeDate)
         timer.start(1000)
+
+    def ICmethodscreen(self):
+        self.lbl_error_msg.setText("")
+        self.input_ICNum.setText("")
+        self.stackedWidget.setCurrentWidget(self.ICMethod)
     
     def check_members(self):
         value = self.input_ICNum.text()
@@ -58,7 +67,7 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
             self.Videocapture_ = "0"
 
     def TimeDate(self):
-        #Update time
+        # Update time
         now = QDate.currentDate()
         current_date = now.toString('ddd dd MMMM yyyy')
         current_time = datetime.datetime.now().strftime("%I:%M %p")
@@ -69,3 +78,9 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.facial_recog.resetLabel()
         self.facial_recog.startVideo(self.Videocapture_)
         self.facial_recog.exec()
+
+    @Slot()
+    def updateLabel(self, admin):
+        # Update user information on screen
+        self.name_label.setText(admin['fullName'])
+        self.position_label.setText(admin['position'])
