@@ -1,11 +1,10 @@
-from PySide6.QtWidgets import QWidget, QDialog, QMessageBox
+from PySide6.QtWidgets import QWidget, QMessageBox
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtCore import Slot
 from UI.ui_memberVerificationScreen import Ui_Form
 from screens.facialRecognitionScreen  import facialRecog
 from PySide6.QtCore import QTimer, QDate, QRegularExpression
 from DB.connectionDB import FirebaseAccessor
-from DB.connectionDB import FirebaseAuthentication
 import datetime
 import sys
 

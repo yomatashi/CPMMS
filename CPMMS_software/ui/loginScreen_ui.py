@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
 import resources_rc
 
 class Ui_MainWindow(object):
@@ -228,6 +228,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.input_password_2)
 
+        self.lbl_err_msg_pw = QLabel(self.frame_10)
+        self.lbl_err_msg_pw.setObjectName(u"lbl_err_msg_pw")
+        self.lbl_err_msg_pw.setMaximumSize(QSize(16777215, 0))
+        self.lbl_err_msg_pw.setStyleSheet(u"color: rgb(255, 0, 0)")
+
+        self.verticalLayout.addWidget(self.lbl_err_msg_pw)
+
         self.label_7 = QLabel(self.frame_10)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setMaximumSize(QSize(16777215, 30))
@@ -247,9 +254,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.label_8)
 
-        self.input_jobPosition = QLineEdit(self.frame_10)
+        self.input_jobPosition = QComboBox(self.frame_10)
+        self.input_jobPosition.addItem("")
+        self.input_jobPosition.addItem("")
+        self.input_jobPosition.addItem("")
         self.input_jobPosition.setObjectName(u"input_jobPosition")
         self.input_jobPosition.setMaximumSize(QSize(16777215, 35))
+        font1 = QFont()
+        font1.setPointSize(12)
+        self.input_jobPosition.setFont(font1)
         self.input_jobPosition.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
         self.verticalLayout.addWidget(self.input_jobPosition)
@@ -346,7 +359,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CPMMS", None))
         self.lbl_goSignUp.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Don't have an account? <a href=\"#\">Sign Up</a></span></p></body></html>", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Username</span></p></body></html>", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Email</span></p></body></html>", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Password</span></p></body></html>", None))
         self.btn_login.setText(QCoreApplication.translate("MainWindow", u"LOG IN", None))
         self.input_username.setText("")
@@ -356,8 +369,13 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Email</span></p></body></html>", None))
         self.lbl_err_msg_email_exist.setText("")
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Password</span></p></body></html>", None))
+        self.lbl_err_msg_pw.setText("")
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Full Name</span></p></body></html>", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Job Position</span></p></body></html>", None))
+        self.input_jobPosition.setItemText(0, QCoreApplication.translate("MainWindow", u"Pharmacist", None))
+        self.input_jobPosition.setItemText(1, QCoreApplication.translate("MainWindow", u"Cashier", None))
+        self.input_jobPosition.setItemText(2, QCoreApplication.translate("MainWindow", u"Developer", None))
+
         self.lbl_err_msg_empty.setText("")
         self.btn_signup.setText(QCoreApplication.translate("MainWindow", u"SIGN UP", None))
         self.lbl_goLogin.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Already have an account? <a href=\"#\">Log In</a></span></p></body></html>", None))
