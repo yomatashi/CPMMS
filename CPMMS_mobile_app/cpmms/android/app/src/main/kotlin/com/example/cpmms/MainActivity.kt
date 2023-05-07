@@ -1,0 +1,6 @@
+package com.example.cpmms
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
