@@ -2,6 +2,7 @@ import 'package:cpmms/src/constants/colors.dart';
 import 'package:cpmms/src/constants/image_strings.dart';
 import 'package:cpmms/src/constants/sizes.dart';
 import 'package:cpmms/src/features/authentications/screens/login/login_screen.dart';
+import 'package:cpmms/src/features/core/screens/dashboard/dashboard_guest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -58,7 +59,7 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {Get.to(const DashboardGuest());},
                     style: OutlinedButton.styleFrom(
                       shape: const RoundedRectangleBorder(),
                       foregroundColor: tSecondaryColor,

@@ -1,5 +1,6 @@
 import 'package:cpmms/src/constants/image_strings.dart';
 import 'package:cpmms/src/constants/sizes.dart';
+import 'package:cpmms/src/features/authentications/controllers/login_controller.dart';
 import 'package:cpmms/src/features/authentications/screens/forget_password/forget_password_mail.dart';
 import 'package:cpmms/src/features/authentications/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -31,20 +32,48 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   const LoginForm({
     super.key,
   });
 
   @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  bool _obscureText = true;
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LogInController());
+    final _formKey = GlobalKey<FormState>();
+
     return Form(
+      key: _formKey,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: tFormHeight - 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller: controller.email,
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return ("Please Enter Your Email");
+                }
+                if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                    .hasMatch(value)) {
+                  return ("Please Enter a valid email");
+                }
+                return null;
+              },
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person_outline_outlined),
                 labelText: "E-Mail",
@@ -54,14 +83,25 @@ class LoginForm extends StatelessWidget {
             ),
             const SizedBox(height: tFormHeight - 20),
             TextFormField(
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.key_outlined),
+              controller: controller.password,
+              obscureText: _obscureText,
+              validator: (value) {
+                RegExp regex = RegExp(r'^.{7,}$');
+                if (value!.isEmpty) {
+                  return ("Password is required for login");
+                }
+                if (!regex.hasMatch(value)) {
+                  return ("Enter Valid Password(Min. 7 Character)");
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.key_outlined),
                   labelText: "Password",
-                  hintText: "*******",
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
-                    onPressed: null,
-                    icon: Icon(Icons.remove_red_eye_sharp),
+                    icon: const Icon(Icons.remove_red_eye_sharp),
+                    onPressed: _toggle,
                   )),
             ),
             const SizedBox(height: tFormHeight - 20),
@@ -77,7 +117,13 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    LogInController.instance.loginUser(
+                        controller.email.text.trim(),
+                        controller.password.text.trim());
+                  }
+                },
                 child: Text("Login".toUpperCase()),
               ),
             ),

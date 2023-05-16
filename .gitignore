@@ -1,2 +1,8 @@
 CPMMS_software/DB/serviceAccountKey.json
 CPMMS_software/DB/firebaseconfig.py
+CPMMS_mobile_app/cpmms/android/app/google-services.json
+CPMMS_mobile_app/cpmms/ios/Runner/GoogleService-Info.plist
+CPMMS_mobile_app/cpmms/ios/firebase_app_id_file.json
+CPMMS_mobile_app/cpmms/lib/firebase_options.dart
+CPMMS_mobile_app/cpmms/macos/firebase_app_id_file.json
+CPMMS_mobile_app/cpmms/macos/Runner/GoogleService-Info.plist

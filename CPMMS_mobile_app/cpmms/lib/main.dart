@@ -1,9 +1,13 @@
-import 'package:cpmms/src/features/authentications/screens/welcome/welcome_screen.dart';
+import 'package:cpmms/firebase_options.dart';
+import 'package:cpmms/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cpmms/src/utils/theme/theme.dart';
 import 'package:get/get.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((value) => Get.put(AuthenticationRepository()));
   runApp(const MyApp());
 }
 
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.leftToRightWithFade,
-      home: const WelcomeScreen(),
+      home: const CircularProgressIndicator(),
     );
   }
 }
