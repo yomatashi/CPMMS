@@ -59,6 +59,12 @@ class FirebaseStorage:
                 blob = self.bucket.blob(remote_file_path)
                 blob.upload_from_filename(local_file_path)
         print("File uploaded!")
+    
+    def upload_file(self, local_file_path, remote_folder_path, new_file_name):
+        remote_file_path = os.path.join(remote_folder_path, new_file_name).replace("\\", "/")
+        blob = self.bucket.blob(remote_file_path)
+        blob.upload_from_filename(local_file_path)
+        print("File uploaded!")
 
     def download_folder(self, remote_folder_path, local_folder_path):
         if not os.path.exists("ImagesMembers"):

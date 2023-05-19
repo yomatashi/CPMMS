@@ -11,7 +11,7 @@ storage_update_date = FirebaseMutator('FBStorage')
 if storage_date_data['last_update'] > storage_date_data['last_retrieve']:
     firebase_storage = FirebaseStorage()
     firebase_storage.download_folder("img", "ImagesMembers")
-    storage_date_data['last_update']
+    # storage_date_data['last_update']
     new_date = {'last_retrieve': datetime.datetime.now().astimezone(None)}
     storage_update_date.update("storageupdate", new_date)
 

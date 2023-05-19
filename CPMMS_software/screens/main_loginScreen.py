@@ -83,7 +83,7 @@ class MainWindowLoginScreen(QtWidgets.QMainWindow, Ui_MainWindow):
         password = self.input_password_2.text()
         fullname = self.input_fullName.text()
         jobPos = self.input_jobPosition.currentText()
-        tryRegister = FirebaseAuthentication.register(email, password)
+        
         if not all([email, password, fullname, jobPos]):
             self.clearErrMsg()
             self.lbl_err_msg_empty.setMaximumHeight(25)
@@ -97,6 +97,7 @@ class MainWindowLoginScreen(QtWidgets.QMainWindow, Ui_MainWindow):
             self.lbl_err_msg_pw.setMaximumHeight(25)
             self.lbl_err_msg_pw.setText("Password must have at least 7 character")
         else:
+            tryRegister = FirebaseAuthentication.register(email, password)
             if tryRegister == "Pass":
                 self.clearErrMsg()
                 Admin = FirebaseMutator('Admin')

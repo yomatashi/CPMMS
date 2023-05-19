@@ -56,24 +56,19 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setVerticalSpacing(0)
         self.gridLayout_2.setContentsMargins(-1, 0, -1, 0)
-        self.lbl_goSignUp = QLabel(self.frame_4)
-        self.lbl_goSignUp.setObjectName(u"lbl_goSignUp")
-        self.lbl_goSignUp.setMaximumSize(QSize(16777215, 30))
-        self.lbl_goSignUp.setAlignment(Qt.AlignCenter)
+        self.lbl_err_msg = QLabel(self.frame_4)
+        self.lbl_err_msg.setObjectName(u"lbl_err_msg")
+        self.lbl_err_msg.setMaximumSize(QSize(16777215, 30))
+        self.lbl_err_msg.setStyleSheet(u"color: rgb(255, 0, 0)")
 
-        self.gridLayout_2.addWidget(self.lbl_goSignUp, 7, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.lbl_err_msg, 6, 0, 1, 1)
 
-        self.label_2 = QLabel(self.frame_4)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setMaximumSize(QSize(16777215, 50))
+        self.label = QLabel(self.frame_4)
+        self.label.setObjectName(u"label")
+        self.label.setMaximumSize(QSize(16777215, 70))
+        self.label.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.label_2, 1, 0, 1, 1)
-
-        self.label_3 = QLabel(self.frame_4)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setMaximumSize(QSize(16777215, 50))
-
-        self.gridLayout_2.addWidget(self.label_3, 3, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
 
         self.frame_6 = QFrame(self.frame_4)
         self.frame_6.setObjectName(u"frame_6")
@@ -95,7 +90,35 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addWidget(self.btn_login, 0, 0, 1, 1)
 
 
-        self.gridLayout_2.addWidget(self.frame_6, 6, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.frame_6, 7, 0, 1, 1)
+
+        self.lbl_goSignUp = QLabel(self.frame_4)
+        self.lbl_goSignUp.setObjectName(u"lbl_goSignUp")
+        self.lbl_goSignUp.setMaximumSize(QSize(16777215, 30))
+        self.lbl_goSignUp.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.lbl_goSignUp, 8, 0, 1, 1)
+
+        self.label_2 = QLabel(self.frame_4)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setMaximumSize(QSize(16777215, 50))
+
+        self.gridLayout_2.addWidget(self.label_2, 1, 0, 1, 1)
+
+        self.label_3 = QLabel(self.frame_4)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setMaximumSize(QSize(16777215, 50))
+
+        self.gridLayout_2.addWidget(self.label_3, 4, 0, 1, 1)
+
+        self.input_username = QLineEdit(self.frame_4)
+        self.input_username.setObjectName(u"input_username")
+        self.input_username.setMinimumSize(QSize(0, 0))
+        self.input_username.setMaximumSize(QSize(16777215, 35))
+        self.input_username.setStyleSheet(u"background-color: rgb(255, 255, 255)")
+        self.input_username.setEchoMode(QLineEdit.Normal)
+
+        self.gridLayout_2.addWidget(self.input_username, 2, 0, 1, 1)
 
         self.input_password = QLineEdit(self.frame_4)
         self.input_password.setObjectName(u"input_password")
@@ -104,29 +127,7 @@ class Ui_MainWindow(object):
         self.input_password.setStyleSheet(u"background-color: rgb(255, 255, 255)")
         self.input_password.setEchoMode(QLineEdit.Password)
 
-        self.gridLayout_2.addWidget(self.input_password, 4, 0, 1, 1)
-
-        self.input_username = QLineEdit(self.frame_4)
-        self.input_username.setObjectName(u"input_username")
-        self.input_username.setMinimumSize(QSize(0, 0))
-        self.input_username.setMaximumSize(QSize(16777215, 35))
-        self.input_username.setStyleSheet(u"background-color: rgb(255, 255, 255)")
-
-        self.gridLayout_2.addWidget(self.input_username, 2, 0, 1, 1)
-
-        self.label = QLabel(self.frame_4)
-        self.label.setObjectName(u"label")
-        self.label.setMaximumSize(QSize(16777215, 70))
-        self.label.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
-
-        self.lbl_err_msg = QLabel(self.frame_4)
-        self.lbl_err_msg.setObjectName(u"lbl_err_msg")
-        self.lbl_err_msg.setMaximumSize(QSize(16777215, 30))
-        self.lbl_err_msg.setStyleSheet(u"color: rgb(255, 0, 0)")
-
-        self.gridLayout_2.addWidget(self.lbl_err_msg, 5, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.input_password, 5, 0, 1, 1)
 
 
         self.gridLayout_4.addWidget(self.frame_4, 1, 1, 1, 1)
@@ -358,13 +359,13 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"CPMMS", None))
+        self.lbl_err_msg.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:600;\">Log In</span></p></body></html>", None))
+        self.btn_login.setText(QCoreApplication.translate("MainWindow", u"LOG IN", None))
         self.lbl_goSignUp.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Don't have an account? <a href=\"#\">Sign Up</a></span></p></body></html>", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Email</span></p></body></html>", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Password</span></p></body></html>", None))
-        self.btn_login.setText(QCoreApplication.translate("MainWindow", u"LOG IN", None))
-        self.input_username.setText("")
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:600;\">Log In</span></p></body></html>", None))
-        self.lbl_err_msg.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
+        self.input_password.setText("")
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:600;\">Sign Up</span></p></body></html>", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Email</span></p></body></html>", None))
         self.lbl_err_msg_email_exist.setText("")

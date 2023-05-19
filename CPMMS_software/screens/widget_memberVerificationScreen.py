@@ -1,17 +1,26 @@
 from PySide6.QtWidgets import QWidget, QMessageBox
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtCore import Slot
-from UI.ui_memberVerificationScreen import Ui_Form
+from UI.memberVerificationScreen_ui import Ui_Form
 from screens.facialRecognitionScreen  import facialRecog
 from PySide6.QtCore import QTimer, QDate, QRegularExpression
 from DB.connectionDB import FirebaseAccessor
 import datetime
 import sys
+import screens.widget_memberManagerScreen as mem_manager
+from screens.cameraCaptureScreen import Camera
 
 class WidgetMemberVerificationScreen(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+        # date-time 
+        timer  = QTimer(self)
+        timer.timeout.connect(self.TimeDate)
+        timer.start(1000)
+
+        # ---Member Verification Screen---
         self.btn_member_verification.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.verificationMethod))
         self.btn_ic.clicked.connect(self.ICmethodscreen)
         self.btn_facial_recog.clicked.connect(self.openFacialRecognitionProgram)
@@ -29,10 +38,17 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.Videocapture_ = "0"
         self.cam_input.currentTextChanged.connect(self.set_camera)
 
-        # date-time 
-        timer  = QTimer(self)
-        timer.timeout.connect(self.TimeDate)
-        timer.start(1000)
+        # ---Member Manager Screen---
+        self.btn_member_manager.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.memberManager))
+        self.btn_addMember.clicked.connect(lambda: mem_manager.AddMemberScreen(self))
+        self.btn_listMember.clicked.connect(lambda: mem_manager.ListMemberScreen(self))
+        self.btn_browse.clicked.connect(lambda: mem_manager.browseFile(self))
+        self.btn_cam.clicked.connect(self.openCameraCapture)
+        self.btn_registerMem.clicked.connect(lambda: mem_manager.registerNewMember(self))
+        self.cam_screen = Camera()
+
+    def openCameraCapture(self):
+        self.cam_screen.exec()
 
     def ICmethodscreen(self):
         self.lbl_error_msg.setText("")
