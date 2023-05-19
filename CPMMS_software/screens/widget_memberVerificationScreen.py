@@ -47,9 +47,7 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.btn_registerMem.clicked.connect(lambda: mem_manager.registerNewMember(self))
         self.cam_screen = Camera()
 
-    def openCameraCapture(self):
-        self.cam_screen.exec()
-
+    # ---Member Verification Screen---
     def ICmethodscreen(self):
         self.lbl_error_msg.setText("")
         self.input_ICNum.setText("")
@@ -99,3 +97,8 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         # Update user information on screen
         self.name_label.setText(admin['fullName'])
         self.position_label.setText(admin['position'])
+
+    # ---Member Manager Screen---
+    def openCameraCapture(self):
+        self.cam_screen.openCameraReg()
+        self.cam_screen.show()

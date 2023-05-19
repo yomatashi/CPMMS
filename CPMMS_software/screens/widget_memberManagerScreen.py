@@ -30,7 +30,8 @@ def ListMemberScreen(self):
     self.stackedWidget.setCurrentWidget(self.listMember)
 
 def browseFile(self):
-    fname = QFileDialog.getOpenFileName(self, "Open File", "", "Images (*.png *.xpm *.jpg *.bmp)")
+    pictures_dir = os.path.expanduser("~/Pictures")
+    fname = QFileDialog.getOpenFileName(self, "Open File", pictures_dir, "Images (*.png *.xpm *.jpg *.bmp)")
 
     if fname:
         self.input_fileName.setText(fname[0])
@@ -50,7 +51,7 @@ def registerNewMember(self):
     elif not photoDir:
         QMessageBox.warning(self, "No photo attached", "Please upload a photo of the member's face", QMessageBox.Ok)
     else:
-        tryRegister = FirebaseAuthentication.register(email, "cpmmspw12345")
+        tryRegister = FirebaseAuthentication.register(email, "cpmmspw123")
         if tryRegister == "Pass":
             Member = FirebaseMutator('Member')
             counter = FirebaseAccessor('counter').read("indices")
@@ -58,11 +59,15 @@ def registerNewMember(self):
 
             Memberdata = {'email': email, 'fullName': fullName, 'IC': ICnum, 'points': 0}
             Member.create(Memberdata, "mem" + str(counter['mem']+1))
+            new_file_name = fullName+"-mem"+str(counter['mem']+1)+".jpg"
             counterUpdate.update("indices", {'mem': counter['mem']+1})
+
+            # send password reset to new user
+            tryPwReset = FirebaseAuthentication.send_password_reset_email(email)
+            print(tryPwReset)
 
             # upload photo to firebase storage
             firebase_storage = FirebaseStorage()
-            new_file_name = fullName+"-mem"+str(counter['mem'])+".jpg"
             firebase_storage.upload_file(photoDir, "img", new_file_name)
             storage_update_date = FirebaseMutator('FBStorage')
             new_date = {'last_update': datetime.datetime.now().astimezone(None)}
@@ -77,6 +82,3 @@ def registerNewMember(self):
                 firebase_storage.download_folder("img", "ImagesMembers")
         else:
             QMessageBox.warning(self, "Failed to register", tryRegister, QMessageBox.Ok)
-
-# def openCamera(self):
-#     print("btn open camera clicked!")
