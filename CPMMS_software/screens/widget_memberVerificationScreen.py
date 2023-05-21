@@ -41,11 +41,19 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         # ---Member Manager Screen---
         self.btn_member_manager.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.memberManager))
         self.btn_addMember.clicked.connect(lambda: mem_manager.AddMemberScreen(self))
-        self.btn_listMember.clicked.connect(lambda: mem_manager.ListMemberScreen(self))
         self.btn_browse.clicked.connect(lambda: mem_manager.browseFile(self))
+        self.cam_screen = Camera()
         self.btn_cam.clicked.connect(self.openCameraCapture)
         self.btn_registerMem.clicked.connect(lambda: mem_manager.registerNewMember(self))
-        self.cam_screen = Camera()
+
+        # List members
+        self.btn_listMember.clicked.connect(lambda: mem_manager.ListMemberScreen(self))
+        self.btn_searchMem.clicked.connect(lambda: mem_manager.searchMem(self))
+        self.btn_refreshMem.clicked.connect(lambda: mem_manager.ListMemberScreen(self))
+        self.tbl_memList.doubleClicked.connect(lambda: mem_manager.show_member_details(self))
+        self.btn_back.clicked.connect(lambda: mem_manager.ListMemberScreen(self))
+        self.btn_deleteMemEdit.clicked.connect(lambda: mem_manager.delete_member(self))
+        self.btn_updateMemEdit.clicked.connect(lambda: mem_manager.update_member(self))
 
     # ---Member Verification Screen---
     def ICmethodscreen(self):

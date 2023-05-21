@@ -40,6 +40,10 @@ class FirebaseAccessor:
         docs = self.collection_ref.get()
         return [doc.to_dict() for doc in docs]
 
+    def read_all_with_id(self):
+        docs = self.collection_ref.get()
+        return [{"id": doc.id, "data": doc.to_dict()} for doc in docs]
+
     def read(self, doc_id):
         doc_ref = self.collection_ref.document(doc_id)
         doc = doc_ref.get()
@@ -81,6 +85,12 @@ class FirebaseStorage:
             os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
             blob.download_to_filename(local_file_path)
         print("File downloaded!")
+    
+    def delete_file(self, remote_folder_path, file_name):
+        remote_file_path = os.path.join(remote_folder_path, file_name).replace("\\", "/")
+        blob = self.bucket.blob(remote_file_path)
+        blob.delete()
+        print("File deleted!")
 
 class FirebaseAuthentication:
     # def __init__(self):
@@ -98,6 +108,14 @@ class FirebaseAuthentication:
             return "Pass"
         except:
             return "Email already exist"
+        
+    def delete_user_auth(email):
+        try:
+            user = firebase_admin.auth.get_user_by_email(email)
+            firebase_admin.auth.delete_user(user.uid)
+            return "User deleted successfully"
+        except:
+            return "Failed to delete user"
     
     def getAuthEmail():
         return auth.current_user['email']
