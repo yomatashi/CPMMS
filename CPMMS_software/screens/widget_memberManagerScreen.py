@@ -1,6 +1,6 @@
 from PySide6.QtCore import QRegularExpression
-from PySide6.QtGui import QRegularExpressionValidator, QPixmap, QCursor, Qt
-from PySide6.QtWidgets import QFileDialog, QHeaderView, QTableWidgetItem, QPushButton
+from PySide6.QtGui import QRegularExpressionValidator
+from PySide6.QtWidgets import QFileDialog, QHeaderView, QTableWidgetItem
 from DB.connectionDB import FirebaseAuthentication, FirebaseAccessor, FirebaseMutator, FirebaseStorage
 from PySide6.QtWidgets import QMessageBox
 import datetime
@@ -173,6 +173,7 @@ def update_member(self):
     email = self.input_email_edit.text()
     memberID = self.lbl_memID.text()
     points = self.input_pts_edit.text()
+    
     update_mem = FirebaseMutator('Member')
     update_data = {'email': email, 'fullName': fullName, 'IC': ICnum, 'points': points}
     update_mem.update(memberID, update_data)

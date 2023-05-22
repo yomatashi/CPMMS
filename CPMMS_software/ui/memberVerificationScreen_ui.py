@@ -831,6 +831,9 @@ class Ui_Form(object):
         self.input_email_edit.setObjectName(u"input_email_edit")
         self.input_email_edit.setMinimumSize(QSize(0, 0))
         self.input_email_edit.setMaximumSize(QSize(16777215, 30))
+        font5 = QFont()
+        font5.setPointSize(12)
+        self.input_email_edit.setFont(font5)
         self.input_email_edit.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
         self.gridLayout_7.addWidget(self.input_email_edit, 5, 2, 1, 2)
@@ -851,6 +854,7 @@ class Ui_Form(object):
         self.input_pts_edit.setObjectName(u"input_pts_edit")
         self.input_pts_edit.setMinimumSize(QSize(0, 0))
         self.input_pts_edit.setMaximumSize(QSize(16777215, 30))
+        self.input_pts_edit.setFont(font5)
         self.input_pts_edit.setStyleSheet(u"background-color: rgba(217,217,217,255)")
         self.input_pts_edit.setReadOnly(True)
 
@@ -878,6 +882,7 @@ class Ui_Form(object):
         self.input_fullName_edit.setObjectName(u"input_fullName_edit")
         self.input_fullName_edit.setMinimumSize(QSize(0, 0))
         self.input_fullName_edit.setMaximumSize(QSize(16777215, 30))
+        self.input_fullName_edit.setFont(font5)
         self.input_fullName_edit.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
         self.gridLayout_7.addWidget(self.input_fullName_edit, 3, 2, 1, 2)
@@ -892,6 +897,7 @@ class Ui_Form(object):
         self.input_IC_edit.setObjectName(u"input_IC_edit")
         self.input_IC_edit.setMinimumSize(QSize(0, 0))
         self.input_IC_edit.setMaximumSize(QSize(16777215, 30))
+        self.input_IC_edit.setFont(font5)
         self.input_IC_edit.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
         self.gridLayout_7.addWidget(self.input_IC_edit, 4, 2, 1, 2)
@@ -904,6 +910,7 @@ class Ui_Form(object):
 
         self.lbl_memID = QLabel(self.frame_23)
         self.lbl_memID.setObjectName(u"lbl_memID")
+        self.lbl_memID.setFont(font5)
 
         self.gridLayout_7.addWidget(self.lbl_memID, 6, 2, 1, 2)
 
@@ -928,6 +935,192 @@ class Ui_Form(object):
         self.gridLayout_6.addWidget(self.frame_26, 0, 0, 1, 3)
 
         self.stackedWidget.addWidget(self.editMember)
+        self.adminProfile = QWidget()
+        self.adminProfile.setObjectName(u"adminProfile")
+        self.gridLayout_8 = QGridLayout(self.adminProfile)
+        self.gridLayout_8.setSpacing(0)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.frame_33 = QFrame(self.adminProfile)
+        self.frame_33.setObjectName(u"frame_33")
+        self.frame_33.setMaximumSize(QSize(100, 16777215))
+        self.frame_33.setFrameShape(QFrame.StyledPanel)
+        self.frame_33.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_8.addWidget(self.frame_33, 1, 0, 1, 1)
+
+        self.frame_31 = QFrame(self.adminProfile)
+        self.frame_31.setObjectName(u"frame_31")
+        self.frame_31.setMaximumSize(QSize(16777215, 30))
+        self.frame_31.setFrameShape(QFrame.StyledPanel)
+        self.frame_31.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_8.addWidget(self.frame_31, 0, 0, 1, 3)
+
+        self.frame_35 = QFrame(self.adminProfile)
+        self.frame_35.setObjectName(u"frame_35")
+        self.frame_35.setMaximumSize(QSize(16777215, 30))
+        self.frame_35.setFrameShape(QFrame.StyledPanel)
+        self.frame_35.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_8.addWidget(self.frame_35, 2, 0, 1, 3)
+
+        self.frame_34 = QFrame(self.adminProfile)
+        self.frame_34.setObjectName(u"frame_34")
+        self.frame_34.setMaximumSize(QSize(100, 16777215))
+        self.frame_34.setFrameShape(QFrame.StyledPanel)
+        self.frame_34.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_8.addWidget(self.frame_34, 1, 2, 1, 1)
+
+        self.frame_32 = QFrame(self.adminProfile)
+        self.frame_32.setObjectName(u"frame_32")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.frame_32.sizePolicy().hasHeightForWidth())
+        self.frame_32.setSizePolicy(sizePolicy4)
+        self.frame_32.setMaximumSize(QSize(925, 650))
+        self.frame_32.setFrameShape(QFrame.StyledPanel)
+        self.frame_32.setFrameShadow(QFrame.Raised)
+        self.gridLayout_10 = QGridLayout(self.frame_32)
+        self.gridLayout_10.setSpacing(0)
+        self.gridLayout_10.setObjectName(u"gridLayout_10")
+        self.gridLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.label_19 = QLabel(self.frame_32)
+        self.label_19.setObjectName(u"label_19")
+        sizePolicy2.setHeightForWidth(self.label_19.sizePolicy().hasHeightForWidth())
+        self.label_19.setSizePolicy(sizePolicy2)
+        self.label_19.setMaximumSize(QSize(925, 50))
+        self.label_19.setSizeIncrement(QSize(0, 0))
+        self.label_19.setStyleSheet(u"")
+        self.label_19.setTextFormat(Qt.AutoText)
+        self.label_19.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_10.addWidget(self.label_19, 0, 1, 1, 2)
+
+        self.frame_36 = QFrame(self.frame_32)
+        self.frame_36.setObjectName(u"frame_36")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.frame_36.sizePolicy().hasHeightForWidth())
+        self.frame_36.setSizePolicy(sizePolicy5)
+        self.frame_36.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_36.setFrameShape(QFrame.StyledPanel)
+        self.frame_36.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_10.addWidget(self.frame_36, 1, 0, 4, 1)
+
+        self.label_20 = QLabel(self.frame_32)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setMaximumSize(QSize(130, 30))
+
+        self.gridLayout_10.addWidget(self.label_20, 1, 1, 1, 1)
+
+        self.input_fullName_admin = QLineEdit(self.frame_32)
+        self.input_fullName_admin.setObjectName(u"input_fullName_admin")
+        sizePolicy6 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.input_fullName_admin.sizePolicy().hasHeightForWidth())
+        self.input_fullName_admin.setSizePolicy(sizePolicy6)
+        self.input_fullName_admin.setMinimumSize(QSize(235, 0))
+        self.input_fullName_admin.setMaximumSize(QSize(16777215, 30))
+        self.input_fullName_admin.setFont(font5)
+        self.input_fullName_admin.setStyleSheet(u"background-color: rgb(255, 255, 255)")
+
+        self.gridLayout_10.addWidget(self.input_fullName_admin, 1, 2, 1, 1)
+
+        self.frame_37 = QFrame(self.frame_32)
+        self.frame_37.setObjectName(u"frame_37")
+        sizePolicy5.setHeightForWidth(self.frame_37.sizePolicy().hasHeightForWidth())
+        self.frame_37.setSizePolicy(sizePolicy5)
+        self.frame_37.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_37.setFrameShape(QFrame.StyledPanel)
+        self.frame_37.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_10.addWidget(self.frame_37, 1, 3, 4, 1)
+
+        self.label_21 = QLabel(self.frame_32)
+        self.label_21.setObjectName(u"label_21")
+        sizePolicy5.setHeightForWidth(self.label_21.sizePolicy().hasHeightForWidth())
+        self.label_21.setSizePolicy(sizePolicy5)
+        self.label_21.setMaximumSize(QSize(130, 30))
+
+        self.gridLayout_10.addWidget(self.label_21, 2, 1, 1, 1)
+
+        self.lbl_admin_email = QLabel(self.frame_32)
+        self.lbl_admin_email.setObjectName(u"lbl_admin_email")
+        sizePolicy5.setHeightForWidth(self.lbl_admin_email.sizePolicy().hasHeightForWidth())
+        self.lbl_admin_email.setSizePolicy(sizePolicy5)
+        self.lbl_admin_email.setMaximumSize(QSize(16777215, 30))
+        self.lbl_admin_email.setFont(font5)
+
+        self.gridLayout_10.addWidget(self.lbl_admin_email, 2, 2, 1, 1)
+
+        self.label_31 = QLabel(self.frame_32)
+        self.label_31.setObjectName(u"label_31")
+        sizePolicy3.setHeightForWidth(self.label_31.sizePolicy().hasHeightForWidth())
+        self.label_31.setSizePolicy(sizePolicy3)
+        self.label_31.setMaximumSize(QSize(130, 30))
+
+        self.gridLayout_10.addWidget(self.label_31, 3, 1, 1, 1)
+
+        self.lbl_adminID = QLabel(self.frame_32)
+        self.lbl_adminID.setObjectName(u"lbl_adminID")
+        sizePolicy5.setHeightForWidth(self.lbl_adminID.sizePolicy().hasHeightForWidth())
+        self.lbl_adminID.setSizePolicy(sizePolicy5)
+        self.lbl_adminID.setMaximumSize(QSize(16777215, 30))
+        self.lbl_adminID.setFont(font5)
+
+        self.gridLayout_10.addWidget(self.lbl_adminID, 3, 2, 1, 1)
+
+        self.label_22 = QLabel(self.frame_32)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setMaximumSize(QSize(130, 30))
+
+        self.gridLayout_10.addWidget(self.label_22, 4, 1, 1, 1)
+
+        self.input_jobPosition = QComboBox(self.frame_32)
+        self.input_jobPosition.addItem("")
+        self.input_jobPosition.addItem("")
+        self.input_jobPosition.addItem("")
+        self.input_jobPosition.setObjectName(u"input_jobPosition")
+        sizePolicy6.setHeightForWidth(self.input_jobPosition.sizePolicy().hasHeightForWidth())
+        self.input_jobPosition.setSizePolicy(sizePolicy6)
+        self.input_jobPosition.setMaximumSize(QSize(16777215, 30))
+        self.input_jobPosition.setFont(font5)
+        self.input_jobPosition.setStyleSheet(u"background-color: rgb(255, 255, 255)")
+
+        self.gridLayout_10.addWidget(self.input_jobPosition, 4, 2, 1, 1)
+
+        self.frame_38 = QFrame(self.frame_32)
+        self.frame_38.setObjectName(u"frame_38")
+        self.frame_38.setMaximumSize(QSize(925, 40))
+        self.frame_38.setFrameShape(QFrame.StyledPanel)
+        self.frame_38.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_4 = QHBoxLayout(self.frame_38)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(0, 0, -1, 0)
+        self.btn_updateAdmin = QPushButton(self.frame_38)
+        self.btn_updateAdmin.setObjectName(u"btn_updateAdmin")
+        self.btn_updateAdmin.setMaximumSize(QSize(180, 40))
+        self.btn_updateAdmin.setFont(font1)
+        self.btn_updateAdmin.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_updateAdmin.setStyleSheet(u"background-color: rgba(41,156,39,255);\n"
+"color: rgb(255, 255, 255);")
+
+        self.horizontalLayout_4.addWidget(self.btn_updateAdmin)
+
+
+        self.gridLayout_10.addWidget(self.frame_38, 5, 0, 1, 4)
+
+
+        self.gridLayout_8.addWidget(self.frame_32, 1, 1, 1, 1)
+
+        self.stackedWidget.addWidget(self.adminProfile)
 
         self.gridLayout.addWidget(self.stackedWidget, 2, 1, 1, 1)
 
@@ -1006,5 +1199,18 @@ class Ui_Form(object):
         self.input_IC_edit.setText("")
         self.label_17.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">Email Address:</span></p></body></html>", None))
         self.lbl_memID.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">MemID</span></p></body></html>", None))
+        self.label_19.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Edit Profile</span></p></body></html>", None))
+        self.label_20.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">Full Name:</span></p></body></html>", None))
+        self.input_fullName_admin.setText("")
+        self.label_21.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">Email Address:</span></p></body></html>", None))
+        self.lbl_admin_email.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">email admin</span></p></body></html>", None))
+        self.label_31.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">Admin ID:</span></p></body></html>", None))
+        self.lbl_adminID.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">AdminID</span></p></body></html>", None))
+        self.label_22.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">Job Position:</span></p></body></html>", None))
+        self.input_jobPosition.setItemText(0, QCoreApplication.translate("Form", u"Pharmacist", None))
+        self.input_jobPosition.setItemText(1, QCoreApplication.translate("Form", u"Cashier", None))
+        self.input_jobPosition.setItemText(2, QCoreApplication.translate("Form", u"Developer", None))
+
+        self.btn_updateAdmin.setText(QCoreApplication.translate("Form", u"UPDATE", None))
     # retranslateUi
 

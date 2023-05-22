@@ -20,6 +20,7 @@ class MainWindowLoginScreen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.input_username.setPlaceholderText("Email")
         self.input_password.setPlaceholderText("Password")
         self.btn_login.clicked.connect(self.validateLogin)
+        self.lbl_forgotpw.linkActivated.connect(self.sendEmailReset)
 
         # Signup screen
         self.jobpos = "Pharmacist"
@@ -115,3 +116,14 @@ class MainWindowLoginScreen(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.clearErrMsg()
                 self.lbl_err_msg_email_exist.setMaximumHeight(25)
                 self.lbl_err_msg_email_exist.setText(tryRegister)
+
+    def sendEmailReset(self):
+        email = self.input_username.text()
+        if not email:
+            self.lbl_err_msg.setText("Please enter your email address first")
+        else:
+            # send password reset to registered email
+            tryPwReset = FirebaseAuthentication.send_password_reset_email(email)
+            ret = QMessageBox.information(self, "Sending email...", tryPwReset, QMessageBox.Ok)
+            if ret == QMessageBox.Ok:
+                self.lbl_err_msg.setText("")

@@ -8,6 +8,7 @@ from DB.connectionDB import FirebaseAccessor
 import datetime
 import sys
 import screens.widget_memberManagerScreen as mem_manager
+import screens.widget_adminProfileScreen as admin_profile
 from screens.cameraCaptureScreen import Camera
 
 class WidgetMemberVerificationScreen(QWidget, Ui_Form):
@@ -54,6 +55,10 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.btn_back.clicked.connect(lambda: mem_manager.ListMemberScreen(self))
         self.btn_deleteMemEdit.clicked.connect(lambda: mem_manager.delete_member(self))
         self.btn_updateMemEdit.clicked.connect(lambda: mem_manager.update_member(self))
+
+        # ---Admin Profile Screen---
+        self.btn_edit_profile.clicked.connect(lambda: admin_profile.editProfile(self))
+        self.btn_updateAdmin.clicked.connect(lambda: admin_profile.updateProfile(self))
 
     # ---Member Verification Screen---
     def ICmethodscreen(self):

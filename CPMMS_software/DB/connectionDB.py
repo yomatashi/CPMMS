@@ -123,9 +123,9 @@ class FirebaseAuthentication:
     def send_password_reset_email(email):
         try:
             auth.send_password_reset_email(email)
-            return "Email sent successfully"
+            return "Success! Please check your email to reset your password"
         except:
-            return "Failed to send reset email"
+            return "Failed to send email due to invalid email or email is not registered"
 
 # firebase_storage = FirebaseStorage()
 #  > Upload folder to firebase storage

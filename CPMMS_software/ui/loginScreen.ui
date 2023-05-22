@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1062</width>
-    <height>739</height>
+    <width>1020</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -101,7 +101,7 @@
            <property name="verticalSpacing">
             <number>0</number>
            </property>
-           <item row="6" column="0">
+           <item row="7" column="0">
             <widget class="QLabel" name="lbl_err_msg">
              <property name="maximumSize">
               <size>
@@ -133,7 +133,92 @@
              </property>
             </widget>
            </item>
-           <item row="7" column="0">
+           <item row="6" column="0">
+            <widget class="QLabel" name="lbl_forgotpw">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&lt;a href='#'&gt;Forgot password?&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Email&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="lbl_goSignUp">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Don't have an account? &lt;a href=&quot;#&quot;&gt;Sign Up&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLineEdit" name="input_password">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255)</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
             <widget class="QFrame" name="frame_6">
              <property name="maximumSize">
               <size>
@@ -176,48 +261,6 @@ color: rgb(255, 255, 255)</string>
              </layout>
             </widget>
            </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="lbl_goSignUp">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Don't have an account? &lt;a href=&quot;#&quot;&gt;Sign Up&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_2">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Email&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="0">
             <widget class="QLineEdit" name="input_username">
              <property name="minimumSize">
@@ -232,36 +275,16 @@ color: rgb(255, 255, 255)</string>
                <height>35</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 255, 255)</string>
              </property>
              <property name="echoMode">
               <enum>QLineEdit::Normal</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLineEdit" name="input_password">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(255, 255, 255)</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="echoMode">
-              <enum>QLineEdit::Password</enum>
              </property>
             </widget>
            </item>
@@ -434,6 +457,11 @@ color: rgb(255, 255, 255)</string>
                <height>35</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 255, 255)</string>
              </property>
@@ -475,6 +503,11 @@ color: rgb(255, 255, 255)</string>
                <width>16777215</width>
                <height>35</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
              </property>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 255, 255)</string>
@@ -520,6 +553,11 @@ color: rgb(255, 255, 255)</string>
                <width>16777215</width>
                <height>35</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
              </property>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 255, 255)</string>
