@@ -127,8 +127,8 @@ class facialRecog(QDialog, Ui_OutputDialog):
             ret = QMessageBox.information(self, "Member information", message, QMessageBox.Yes | QMessageBox.No)
             if ret == QMessageBox.Yes:
                 self.accept()
+                self.memID = self.MemberIDLabel.text()
                 self.closeEvent(event=exit)
-                print("User chose Yes")
             else:
                 print("User chose No")
         else:
