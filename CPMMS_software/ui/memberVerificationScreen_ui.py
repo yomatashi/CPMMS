@@ -1356,6 +1356,183 @@ class Ui_Form(object):
         self.frame_40.raise_()
         self.frame_41.raise_()
         self.frame_43.raise_()
+        self.payment = QWidget()
+        self.payment.setObjectName(u"payment")
+        self.gridLayout_12 = QGridLayout(self.payment)
+        self.gridLayout_12.setSpacing(0)
+        self.gridLayout_12.setObjectName(u"gridLayout_12")
+        self.gridLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.frame_50 = QFrame(self.payment)
+        self.frame_50.setObjectName(u"frame_50")
+        sizePolicy7.setHeightForWidth(self.frame_50.sizePolicy().hasHeightForWidth())
+        self.frame_50.setSizePolicy(sizePolicy7)
+        self.frame_50.setMaximumSize(QSize(100, 16777215))
+        self.frame_50.setFrameShape(QFrame.StyledPanel)
+        self.frame_50.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_12.addWidget(self.frame_50, 1, 0, 1, 1)
+
+        self.frame_48 = QFrame(self.payment)
+        self.frame_48.setObjectName(u"frame_48")
+        self.frame_48.setMaximumSize(QSize(16777215, 30))
+        self.frame_48.setFrameShape(QFrame.StyledPanel)
+        self.frame_48.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_12.addWidget(self.frame_48, 0, 0, 1, 3)
+
+        self.frame_51 = QFrame(self.payment)
+        self.frame_51.setObjectName(u"frame_51")
+        sizePolicy7.setHeightForWidth(self.frame_51.sizePolicy().hasHeightForWidth())
+        self.frame_51.setSizePolicy(sizePolicy7)
+        self.frame_51.setMaximumSize(QSize(100, 16777215))
+        self.frame_51.setFrameShape(QFrame.StyledPanel)
+        self.frame_51.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_12.addWidget(self.frame_51, 1, 2, 1, 1)
+
+        self.frame_49 = QFrame(self.payment)
+        self.frame_49.setObjectName(u"frame_49")
+        self.frame_49.setMaximumSize(QSize(16777215, 30))
+        self.frame_49.setFrameShape(QFrame.StyledPanel)
+        self.frame_49.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_12.addWidget(self.frame_49, 2, 0, 1, 3)
+
+        self.frame_47 = QFrame(self.payment)
+        self.frame_47.setObjectName(u"frame_47")
+        self.frame_47.setStyleSheet(u"background-color: rgba(217,217,217,255)")
+        self.frame_47.setFrameShape(QFrame.StyledPanel)
+        self.frame_47.setFrameShadow(QFrame.Raised)
+        self.gridLayout_13 = QGridLayout(self.frame_47)
+        self.gridLayout_13.setObjectName(u"gridLayout_13")
+        self.label_24 = QLabel(self.frame_47)
+        self.label_24.setObjectName(u"label_24")
+        sizePolicy2.setHeightForWidth(self.label_24.sizePolicy().hasHeightForWidth())
+        self.label_24.setSizePolicy(sizePolicy2)
+        self.label_24.setMaximumSize(QSize(925, 50))
+        self.label_24.setSizeIncrement(QSize(0, 0))
+        self.label_24.setStyleSheet(u"")
+        self.label_24.setTextFormat(Qt.AutoText)
+        self.label_24.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_13.addWidget(self.label_24, 0, 0, 1, 4, Qt.AlignHCenter)
+
+        self.lbl_total_pymnt = QLabel(self.frame_47)
+        self.lbl_total_pymnt.setObjectName(u"lbl_total_pymnt")
+        font8 = QFont()
+        font8.setPointSize(15)
+        font8.setBold(True)
+        self.lbl_total_pymnt.setFont(font8)
+        self.lbl_total_pymnt.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_13.addWidget(self.lbl_total_pymnt, 1, 0, 1, 4)
+
+        self.frame_53 = QFrame(self.frame_47)
+        self.frame_53.setObjectName(u"frame_53")
+        sizePolicy5.setHeightForWidth(self.frame_53.sizePolicy().hasHeightForWidth())
+        self.frame_53.setSizePolicy(sizePolicy5)
+        self.frame_53.setFrameShape(QFrame.StyledPanel)
+        self.frame_53.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_13.addWidget(self.frame_53, 2, 0, 2, 1)
+
+        self.label_26 = QLabel(self.frame_47)
+        self.label_26.setObjectName(u"label_26")
+        self.label_26.setMinimumSize(QSize(140, 50))
+        font9 = QFont()
+        font9.setPointSize(12)
+        font9.setBold(False)
+        self.label_26.setFont(font9)
+
+        self.gridLayout_13.addWidget(self.label_26, 2, 1, 1, 1)
+
+        self.comboBox = QComboBox(self.frame_47)
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.setObjectName(u"comboBox")
+        self.comboBox.setMinimumSize(QSize(0, 35))
+        self.comboBox.setFont(font4)
+        self.comboBox.setStyleSheet(u"background-color: rgb(255, 255, 255)")
+
+        self.gridLayout_13.addWidget(self.comboBox, 2, 2, 1, 1)
+
+        self.frame_54 = QFrame(self.frame_47)
+        self.frame_54.setObjectName(u"frame_54")
+        sizePolicy5.setHeightForWidth(self.frame_54.sizePolicy().hasHeightForWidth())
+        self.frame_54.setSizePolicy(sizePolicy5)
+        self.frame_54.setFrameShape(QFrame.StyledPanel)
+        self.frame_54.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_13.addWidget(self.frame_54, 2, 3, 2, 1)
+
+        self.label_27 = QLabel(self.frame_47)
+        self.label_27.setObjectName(u"label_27")
+        self.label_27.setMinimumSize(QSize(140, 50))
+        self.label_27.setFont(font9)
+
+        self.gridLayout_13.addWidget(self.label_27, 3, 1, 1, 1)
+
+        self.lineEdit_2 = QLineEdit(self.frame_47)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.lineEdit_2.setMinimumSize(QSize(0, 35))
+        self.lineEdit_2.setStyleSheet(u"background-color: rgb(255, 255, 255)")
+
+        self.gridLayout_13.addWidget(self.lineEdit_2, 3, 2, 1, 1)
+
+        self.label_28 = QLabel(self.frame_47)
+        self.label_28.setObjectName(u"label_28")
+        self.label_28.setFont(font8)
+        self.label_28.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_13.addWidget(self.label_28, 4, 0, 1, 4)
+
+        self.frame_52 = QFrame(self.frame_47)
+        self.frame_52.setObjectName(u"frame_52")
+        self.frame_52.setFrameShape(QFrame.StyledPanel)
+        self.frame_52.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame_52)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.btn_cancel_pymnt = QPushButton(self.frame_52)
+        self.btn_cancel_pymnt.setObjectName(u"btn_cancel_pymnt")
+        self.btn_cancel_pymnt.setMaximumSize(QSize(180, 40))
+        self.btn_cancel_pymnt.setStyleSheet(u"background-color: rgba(215,41,41,255);\n"
+"color: rgb(255, 255, 255);")
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/x.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_cancel_pymnt.setIcon(icon7)
+
+        self.horizontalLayout_5.addWidget(self.btn_cancel_pymnt)
+
+        self.btn_ok_pymnt = QPushButton(self.frame_52)
+        self.btn_ok_pymnt.setObjectName(u"btn_ok_pymnt")
+        self.btn_ok_pymnt.setMaximumSize(QSize(180, 40))
+        self.btn_ok_pymnt.setStyleSheet(u"background-color: rgba(41,156,39,255);\n"
+"color: rgb(255, 255, 255);")
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/check.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_ok_pymnt.setIcon(icon8)
+
+        self.horizontalLayout_5.addWidget(self.btn_ok_pymnt)
+
+
+        self.gridLayout_13.addWidget(self.frame_52, 5, 0, 1, 4)
+
+        self.frame_52.raise_()
+        self.label_24.raise_()
+        self.lbl_total_pymnt.raise_()
+        self.comboBox.raise_()
+        self.label_26.raise_()
+        self.label_27.raise_()
+        self.lineEdit_2.raise_()
+        self.label_28.raise_()
+        self.frame_53.raise_()
+        self.frame_54.raise_()
+
+        self.gridLayout_12.addWidget(self.frame_47, 1, 1, 1, 1)
+
+        self.stackedWidget.addWidget(self.payment)
 
         self.gridLayout.addWidget(self.stackedWidget, 2, 1, 1, 1)
 
@@ -1465,5 +1642,15 @@ class Ui_Form(object):
         self.lbl_total_pts.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">Total points:</span></p></body></html>", None))
         self.btn_usepts.setText(QCoreApplication.translate("Form", u"Use points", None))
         self.btn_additem.setText(QCoreApplication.translate("Form", u"Add Item", None))
+        self.label_24.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Payment</span></p></body></html>", None))
+        self.lbl_total_pymnt.setText(QCoreApplication.translate("Form", u"TOTAL: RM", None))
+        self.label_26.setText(QCoreApplication.translate("Form", u"Payment Mode:", None))
+        self.comboBox.setItemText(0, QCoreApplication.translate("Form", u"CASH", None))
+        self.comboBox.setItemText(1, QCoreApplication.translate("Form", u"ONLINE", None))
+
+        self.label_27.setText(QCoreApplication.translate("Form", u"Payment amount:", None))
+        self.label_28.setText(QCoreApplication.translate("Form", u"CHANGE: RM0.00", None))
+        self.btn_cancel_pymnt.setText(QCoreApplication.translate("Form", u"CANCEL", None))
+        self.btn_ok_pymnt.setText(QCoreApplication.translate("Form", u"OK", None))
     # retranslateUi
 

@@ -4,7 +4,7 @@ from PySide6.QtCore import Slot
 from UI.memberVerificationScreen_ui import Ui_Form
 from screens.facialRecognitionScreen  import facialRecog
 from PySide6.QtCore import QTimer, QDate, QRegularExpression
-from DB.connectionDB import FirebaseAccessor
+from DB.connectionDB import FirebaseAccessor, FirebaseMutator
 import datetime
 import sys
 import screens.widget_memberManagerScreen as mem_manager
@@ -12,6 +12,7 @@ import screens.widget_adminProfileScreen as admin_profile
 import screens.widget_checkoutScreen as checkout
 from screens.cameraCaptureScreen import Camera
 from screens.addItemScreen import TextInputDialog
+from screens.usePointsScreen import UsePoints
 
 class WidgetMemberVerificationScreen(QWidget, Ui_Form):
     def __init__(self):
@@ -64,9 +65,12 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
 
         # ---Checkout Screen---
         self.btn_checkout.clicked.connect(lambda: checkout.checkoutScreen(self))
-        # self.btn_additem.clicked.connect(lambda: checkout.addItem(self))
         self.btn_additem.clicked.connect(self.openTextInputWindow)
+        self.btn_usepts.clicked.connect(self.openUsePtsWindow)
         self.wadditem = TextInputDialog()
+        self.wusepts = UsePoints()
+
+        # ---Payment Screen---
 
     # ---Member Verification Screen---
     def ICmethodscreen(self):
@@ -135,3 +139,59 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         ret = self.wadditem.exec()
         if ret == QDialog.Accepted:
             checkout.addItem(self, self.wadditem.item_data) 
+
+    def openUsePtsWindow(self):
+        self.wusepts.usePtsScreen(self.lbl_currentMem.text())
+        ret = self.wusepts.exec()
+        if ret == QDialog.Accepted:
+            checkout.memberDiscount(self, self.wusepts.member_pts)
+    
+    def cancelrow(self):
+        button = self.sender()
+        table = self.tbl_checkout
+        index = table.indexAt(button.pos())
+        row = index.row()
+        price_item = float(table.item(row, 2).text())
+        qty = int(table.cellWidget(row, 3).text())
+        self.total -= (price_item*qty)
+        self.lbl_total.setText("Total: RM"+str("{:.2f}".format(self.total)))
+        table.removeRow(row)
+    
+    def cancelrowDisc(self):
+        button = self.sender()
+        table = self.tbl_checkout
+        index = table.indexAt(button.pos())
+        row = index.row()
+        discount = float(table.item(row, 2).text())
+        qty = int(table.item(row, 3).text())
+        self.total -= discount
+        self.lbl_total.setText("Total: RM"+str("{:.2f}".format(self.total)))
+
+        memID = self.lbl_currentMem.text()
+        get_member_pts = FirebaseAccessor('Member').read(memID)['points']
+        new_pts = get_member_pts + (qty*1000)
+        member = FirebaseMutator('Member')
+        update_data = {'points': new_pts}
+        member.update(memID, update_data)
+        self.lbl_total_pts.setText("Total points: "+str(new_pts))
+        table.removeRow(row)
+
+    def onchangeqty(self):
+        spinbox = self.sender()
+        table = self.tbl_checkout
+        index = table.indexAt(spinbox.pos())
+        row = index.row()
+        qty = spinbox.value()
+
+        previous_qty = spinbox.property("previous_value") or 1
+
+        if qty > previous_qty:
+            price_item = float(table.item(row, 2).text())
+            self.total += price_item
+            self.lbl_total.setText("Total: RM"+str("{:.2f}".format(self.total)))
+        elif qty < previous_qty:
+            price_item = float(table.item(row, 2).text())
+            self.total -= price_item
+            self.lbl_total.setText("Total: RM"+str("{:.2f}".format(self.total)))
+        
+        spinbox.setProperty("previous_value", qty)
