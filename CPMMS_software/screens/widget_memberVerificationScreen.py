@@ -10,6 +10,7 @@ import sys
 import screens.widget_memberManagerScreen as mem_manager
 import screens.widget_adminProfileScreen as admin_profile
 import screens.widget_checkoutScreen as checkout
+import screens.widget_paymentScreen as payment
 from screens.cameraCaptureScreen import Camera
 from screens.addItemScreen import TextInputDialog
 from screens.usePointsScreen import UsePoints
@@ -69,8 +70,14 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.btn_usepts.clicked.connect(self.openUsePtsWindow)
         self.wadditem = TextInputDialog()
         self.wusepts = UsePoints()
+        self.btn_remove_member.clicked.connect(self.clearMember)
 
         # ---Payment Screen---
+        self.change = 0.00
+        self.btn_pay.clicked.connect(lambda: payment.paymentScreen(self))
+        self.btn_cancel_pymnt.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.checkout))
+        self.btn_ok_pymnt.clicked.connect(lambda: payment.transaction(self))
+        self.pymnt_amount.textChanged.connect(self.updateChange)
 
     # ---Member Verification Screen---
     def ICmethodscreen(self):
@@ -195,3 +202,12 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
             self.lbl_total.setText("Total: RM"+str("{:.2f}".format(self.total)))
         
         spinbox.setProperty("previous_value", qty)
+
+    def clearMember(self):
+        self.lbl_currentMem.clear()
+        checkout.checkoutScreen(self)
+
+    # ---Payment Screen---
+    def updateChange(self):
+        self.change = float(self.pymnt_amount.text()) - float("{:.2f}".format(self.total))
+        self.lbl_change.setText("CHANGE: RM"+str("{:.2f}".format(self.change)))

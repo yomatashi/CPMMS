@@ -1,6 +1,8 @@
 from PySide6.QtWidgets import QDialog, QVBoxLayout, QLineEdit, QPushButton, QLabel
 from PySide6.QtCore import Slot
 from DB.connectionDB import FirebaseAccessor
+from PySide6.QtCore import QRegularExpression
+from PySide6.QtGui import QRegularExpressionValidator
 
 class TextInputDialog(QDialog):
     def __init__(self):
@@ -10,6 +12,10 @@ class TextInputDialog(QDialog):
         layout = QVBoxLayout(self)
 
         self.text_edit = QLineEdit(self)
+        regexDigit = QRegularExpression(r"\d*")
+        validator = QRegularExpressionValidator(regexDigit)
+        self.text_edit.setValidator(validator)
+        
         layout.addWidget(self.text_edit)
 
         self.label = QLabel(self)

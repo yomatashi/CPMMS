@@ -1237,6 +1237,7 @@ class Ui_Form(object):
 
         self.btn_pay = QPushButton(self.frame_42)
         self.btn_pay.setObjectName(u"btn_pay")
+        self.btn_pay.setEnabled(False)
         sizePolicy9 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         sizePolicy9.setHorizontalStretch(0)
         sizePolicy9.setVerticalStretch(0)
@@ -1253,6 +1254,7 @@ class Ui_Form(object):
 
         self.lbl_currentMem = QLabel(self.frame_42)
         self.lbl_currentMem.setObjectName(u"lbl_currentMem")
+        self.lbl_currentMem.setMaximumSize(QSize(60, 16777215))
         self.lbl_currentMem.setFont(font5)
 
         self.gridLayout_11.addWidget(self.lbl_currentMem, 10, 1, 1, 1)
@@ -1346,6 +1348,15 @@ class Ui_Form(object):
         self.btn_additem.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
         self.gridLayout_11.addWidget(self.btn_additem, 4, 0, 1, 1)
+
+        self.btn_remove_member = QPushButton(self.frame_42)
+        self.btn_remove_member.setObjectName(u"btn_remove_member")
+        self.btn_remove_member.setMaximumSize(QSize(20, 20))
+        self.btn_remove_member.setFont(font1)
+        self.btn_remove_member.setStyleSheet(u"color:  rgba(215,41,41,255);\n"
+"background-color: rgb(255, 255, 255);")
+
+        self.gridLayout_11.addWidget(self.btn_remove_member, 10, 2, 1, 1, Qt.AlignLeft)
 
 
         self.gridLayout_9.addWidget(self.frame_42, 1, 1, 1, 1)
@@ -1446,15 +1457,18 @@ class Ui_Form(object):
 
         self.gridLayout_13.addWidget(self.label_26, 2, 1, 1, 1)
 
-        self.comboBox = QComboBox(self.frame_47)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setMinimumSize(QSize(0, 35))
-        self.comboBox.setFont(font4)
-        self.comboBox.setStyleSheet(u"background-color: rgb(255, 255, 255)")
+        self.pymnt_mode = QComboBox(self.frame_47)
+        self.pymnt_mode.addItem("")
+        self.pymnt_mode.addItem("")
+        self.pymnt_mode.setObjectName(u"pymnt_mode")
+        self.pymnt_mode.setMinimumSize(QSize(0, 35))
+        font10 = QFont()
+        font10.setPointSize(12)
+        font10.setBold(True)
+        self.pymnt_mode.setFont(font10)
+        self.pymnt_mode.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
-        self.gridLayout_13.addWidget(self.comboBox, 2, 2, 1, 1)
+        self.gridLayout_13.addWidget(self.pymnt_mode, 2, 2, 1, 1)
 
         self.frame_54 = QFrame(self.frame_47)
         self.frame_54.setObjectName(u"frame_54")
@@ -1472,19 +1486,20 @@ class Ui_Form(object):
 
         self.gridLayout_13.addWidget(self.label_27, 3, 1, 1, 1)
 
-        self.lineEdit_2 = QLineEdit(self.frame_47)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setMinimumSize(QSize(0, 35))
-        self.lineEdit_2.setStyleSheet(u"background-color: rgb(255, 255, 255)")
+        self.pymnt_amount = QLineEdit(self.frame_47)
+        self.pymnt_amount.setObjectName(u"pymnt_amount")
+        self.pymnt_amount.setMinimumSize(QSize(0, 35))
+        self.pymnt_amount.setFont(font5)
+        self.pymnt_amount.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
-        self.gridLayout_13.addWidget(self.lineEdit_2, 3, 2, 1, 1)
+        self.gridLayout_13.addWidget(self.pymnt_amount, 3, 2, 1, 1)
 
-        self.label_28 = QLabel(self.frame_47)
-        self.label_28.setObjectName(u"label_28")
-        self.label_28.setFont(font8)
-        self.label_28.setAlignment(Qt.AlignCenter)
+        self.lbl_change = QLabel(self.frame_47)
+        self.lbl_change.setObjectName(u"lbl_change")
+        self.lbl_change.setFont(font8)
+        self.lbl_change.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_13.addWidget(self.label_28, 4, 0, 1, 4)
+        self.gridLayout_13.addWidget(self.lbl_change, 4, 0, 1, 4)
 
         self.frame_52 = QFrame(self.frame_47)
         self.frame_52.setObjectName(u"frame_52")
@@ -1497,6 +1512,8 @@ class Ui_Form(object):
         self.btn_cancel_pymnt = QPushButton(self.frame_52)
         self.btn_cancel_pymnt.setObjectName(u"btn_cancel_pymnt")
         self.btn_cancel_pymnt.setMaximumSize(QSize(180, 40))
+        self.btn_cancel_pymnt.setFont(font1)
+        self.btn_cancel_pymnt.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_cancel_pymnt.setStyleSheet(u"background-color: rgba(215,41,41,255);\n"
 "color: rgb(255, 255, 255);")
         icon7 = QIcon()
@@ -1508,6 +1525,8 @@ class Ui_Form(object):
         self.btn_ok_pymnt = QPushButton(self.frame_52)
         self.btn_ok_pymnt.setObjectName(u"btn_ok_pymnt")
         self.btn_ok_pymnt.setMaximumSize(QSize(180, 40))
+        self.btn_ok_pymnt.setFont(font1)
+        self.btn_ok_pymnt.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_ok_pymnt.setStyleSheet(u"background-color: rgba(41,156,39,255);\n"
 "color: rgb(255, 255, 255);")
         icon8 = QIcon()
@@ -1522,11 +1541,11 @@ class Ui_Form(object):
         self.frame_52.raise_()
         self.label_24.raise_()
         self.lbl_total_pymnt.raise_()
-        self.comboBox.raise_()
+        self.pymnt_mode.raise_()
         self.label_26.raise_()
         self.label_27.raise_()
-        self.lineEdit_2.raise_()
-        self.label_28.raise_()
+        self.pymnt_amount.raise_()
+        self.lbl_change.raise_()
         self.frame_53.raise_()
         self.frame_54.raise_()
 
@@ -1642,14 +1661,15 @@ class Ui_Form(object):
         self.lbl_total_pts.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">Total points:</span></p></body></html>", None))
         self.btn_usepts.setText(QCoreApplication.translate("Form", u"Use points", None))
         self.btn_additem.setText(QCoreApplication.translate("Form", u"Add Item", None))
+        self.btn_remove_member.setText(QCoreApplication.translate("Form", u"X", None))
         self.label_24.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Payment</span></p></body></html>", None))
         self.lbl_total_pymnt.setText(QCoreApplication.translate("Form", u"TOTAL: RM", None))
         self.label_26.setText(QCoreApplication.translate("Form", u"Payment Mode:", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("Form", u"CASH", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("Form", u"ONLINE", None))
+        self.pymnt_mode.setItemText(0, QCoreApplication.translate("Form", u"CASH", None))
+        self.pymnt_mode.setItemText(1, QCoreApplication.translate("Form", u"ONLINE", None))
 
         self.label_27.setText(QCoreApplication.translate("Form", u"Payment amount:", None))
-        self.label_28.setText(QCoreApplication.translate("Form", u"CHANGE: RM0.00", None))
+        self.lbl_change.setText(QCoreApplication.translate("Form", u"CHANGE: RM0.00", None))
         self.btn_cancel_pymnt.setText(QCoreApplication.translate("Form", u"CANCEL", None))
         self.btn_ok_pymnt.setText(QCoreApplication.translate("Form", u"OK", None))
     # retranslateUi

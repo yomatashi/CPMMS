@@ -23,6 +23,9 @@ class FirebaseMutator:
         doc_ref.set(data)
         return doc_ref.id
 
+    def create_autoID(self, data):
+        self.collection_ref.add(data)
+
     def update(self, doc_id, data):
         doc_ref = self.collection_ref.document(doc_id)
         doc_ref.update(data)

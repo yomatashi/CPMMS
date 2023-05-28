@@ -12,6 +12,8 @@ def checkoutScreen(self):
     table.horizontalHeader().setMinimumSectionSize(100)
     table.clearContents()
     table.setRowCount(0)
+    self.btn_pay.setEnabled(False)
+    self.btn_remove_member.setVisible(False)
 
     memID = self.lbl_currentMem.text()
     if not memID:
@@ -19,11 +21,13 @@ def checkoutScreen(self):
         self.lbl_total_pts.setText("")
     else:
         self.btn_usepts.setEnabled(True)
+        self.btn_remove_member.setVisible(True)
         mem_data = FirebaseAccessor('Member').read(memID)
         self.lbl_member_status.setText("Member: <span style='color: rgba(41,156,39,255);'>YES</span>")
         self.lbl_total_pts.setText("Total points: "+str(mem_data['points']))
 
 def addItem(self, item_data):
+    self.btn_pay.setEnabled(True)
     table = self.tbl_checkout
     rowcount = table.rowCount()
 

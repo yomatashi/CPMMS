@@ -2808,6 +2808,9 @@ color: rgb(255, 255, 255);</string>
           </item>
           <item row="10" column="3">
            <widget class="QPushButton" name="btn_pay">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
               <horstretch>0</horstretch>
@@ -2847,6 +2850,12 @@ color: rgb(255, 255, 255);</string>
           </item>
           <item row="10" column="1">
            <widget class="QLabel" name="lbl_currentMem">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>12</pointsize>
@@ -3075,6 +3084,30 @@ color: rgb(255, 255, 255);</string>
             </property>
            </widget>
           </item>
+          <item row="10" column="2" alignment="Qt::AlignLeft">
+           <widget class="QPushButton" name="btn_remove_member">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:  rgba(215,41,41,255);
+background-color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -3278,7 +3311,7 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QComboBox" name="comboBox">
+           <widget class="QComboBox" name="pymnt_mode">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -3287,6 +3320,7 @@ color: rgb(255, 255, 255);</string>
             </property>
             <property name="font">
              <font>
+              <pointsize>12</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -3343,12 +3377,17 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="QLineEdit" name="lineEdit_2">
+           <widget class="QLineEdit" name="pymnt_amount">
             <property name="minimumSize">
              <size>
               <width>0</width>
               <height>35</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
             </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 255)</string>
@@ -3356,7 +3395,7 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item row="4" column="0" colspan="4">
-           <widget class="QLabel" name="label_28">
+           <widget class="QLabel" name="lbl_change">
             <property name="font">
              <font>
               <pointsize>15</pointsize>
@@ -3404,6 +3443,16 @@ color: rgb(255, 255, 255);</string>
                  <height>40</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgba(215,41,41,255);
 color: rgb(255, 255, 255);</string>
@@ -3425,6 +3474,16 @@ color: rgb(255, 255, 255);</string>
                  <height>40</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgba(41,156,39,255);
 color: rgb(255, 255, 255);</string>
@@ -3445,11 +3504,11 @@ color: rgb(255, 255, 255);</string>
          <zorder>frame_52</zorder>
          <zorder>label_24</zorder>
          <zorder>lbl_total_pymnt</zorder>
-         <zorder>comboBox</zorder>
+         <zorder>pymnt_mode</zorder>
          <zorder>label_26</zorder>
          <zorder>label_27</zorder>
-         <zorder>lineEdit_2</zorder>
-         <zorder>label_28</zorder>
+         <zorder>pymnt_amount</zorder>
+         <zorder>lbl_change</zorder>
          <zorder>frame_53</zorder>
          <zorder>frame_54</zorder>
         </widget>
