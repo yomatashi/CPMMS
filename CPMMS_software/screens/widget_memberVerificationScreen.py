@@ -11,6 +11,7 @@ import screens.widget_memberManagerScreen as mem_manager
 import screens.widget_adminProfileScreen as admin_profile
 import screens.widget_checkoutScreen as checkout
 import screens.widget_paymentScreen as payment
+import screens.widget_inventoryManagerScreen as inventory
 from screens.cameraCaptureScreen import Camera
 from screens.addItemScreen import TextInputDialog
 from screens.usePointsScreen import UsePoints
@@ -78,6 +79,25 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.btn_cancel_pymnt.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.checkout))
         self.btn_ok_pymnt.clicked.connect(lambda: payment.transaction(self))
         self.pymnt_amount.textChanged.connect(self.updateChange)
+
+        # ---Inventory Screen---
+        self.btn_item_manager.clicked.connect(lambda: self.stackedWidget.setCurrentWidget(self.itemManager))
+        self.btn_add_item.clicked.connect(lambda: inventory.addItemScreen(self))
+        self.btn_addItem.clicked.connect(lambda: inventory.createItem(self))
+
+        # Import item from excel
+        self.btn_import_excel_option.clicked.connect(lambda: inventory.importExcelScreen(self))
+        self.btn_upload_excel.clicked.connect(lambda: inventory.uploadExcel(self))
+        self.btn_browse_import.clicked.connect(lambda: inventory.browseExcel(self))
+        
+        # List item
+        self.btn_list_item.clicked.connect(lambda: inventory.listItemScreen(self))
+        self.btn_searchItem.clicked.connect(lambda: inventory.searchItem(self))
+        self.btn_refreshItem.clicked.connect(lambda: inventory.listItemScreen(self))
+        self.tbl_itemList.doubleClicked.connect(lambda: inventory.show_item_details(self))
+        self.btn_back_item.clicked.connect(lambda: inventory.listItemScreen(self))
+        self.btn_deleteItem.clicked.connect(lambda: inventory.delete_item(self))
+        self.btn_updateItem.clicked.connect(lambda: inventory.update_item(self))
 
     # ---Member Verification Screen---
     def ICmethodscreen(self):
