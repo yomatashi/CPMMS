@@ -18,5 +18,9 @@ class MemberRepository extends GetxController{
     final memberData = snapshot.docs.map((e) => MemberModel.fromSnapshot(e)).toList();
     return memberData;
   }
+
+  Future<void> updateMember(MemberModel member) async{
+    await _db.collection("Member").doc(member.id).update(member.toJson());
+  }
   
 }

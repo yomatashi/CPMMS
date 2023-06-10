@@ -1,3 +1,4 @@
+import 'package:cpmms/src/features/authentications/models/member_model.dart';
 import 'package:cpmms/src/repository/admin_repository/admin_repository.dart';
 import 'package:cpmms/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:cpmms/src/repository/member_repository/member_repository.dart';
@@ -10,7 +11,7 @@ class DashboardController extends GetxController{
   final _memberRepo = Get.put(MemberRepository());
   final _adminRepo = Get.put(AdminRepository());
 
-  getMemberData(){
+  getMemberData() async{
     final email = _authRepo.firebaseUser.value?.email;
     if(email != null){
       return _memberRepo.getMemberDetails(email);
@@ -26,5 +27,10 @@ class DashboardController extends GetxController{
     }else{
       Get.snackbar("Error", "Login to continue");
     }
+  }
+
+  updateMember(MemberModel member) async{
+    await _memberRepo.updateMember(member);
+    Get.find<DashboardController>().getMemberData();
   }
 }

@@ -2,7 +2,7 @@ import 'package:cpmms/src/constants/colors.dart';
 import 'package:cpmms/src/constants/sizes.dart';
 import 'package:cpmms/src/features/authentications/models/member_model.dart';
 import 'package:cpmms/src/features/core/controllers/dashboard_controller.dart';
-import 'package:cpmms/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:cpmms/src/features/core/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,9 +30,9 @@ class Dashboard extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                AuthenticationRepository.instance.logout();
+                Get.to(() => const ProfileScreen());
               },
-              icon: const Icon(Icons.person_2_outlined),
+              icon: const Icon(Icons.person_2_outlined, color: Colors.black54),
             ),
           ),
         ],
