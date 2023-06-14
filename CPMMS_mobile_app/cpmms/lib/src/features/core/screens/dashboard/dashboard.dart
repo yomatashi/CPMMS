@@ -1,8 +1,17 @@
 import 'package:cpmms/src/constants/colors.dart';
+import 'package:cpmms/src/constants/image_strings.dart';
 import 'package:cpmms/src/constants/sizes.dart';
 import 'package:cpmms/src/features/authentications/models/member_model.dart';
-import 'package:cpmms/src/features/core/controllers/dashboard_controller.dart';
+import 'package:cpmms/src/features/core/controllers/nav_controller.dart';
+import 'package:cpmms/src/features/core/controllers/profile_controller.dart';
+import 'package:cpmms/src/features/core/screens/member_points/member_points.dart';
+import 'package:cpmms/src/features/core/screens/payment/payment.dart';
 import 'package:cpmms/src/features/core/screens/profile/profile_screen.dart';
+import 'package:cpmms/src/features/core/screens/purchase_history/purchase_history.dart';
+import 'package:cpmms/src/features/core/screens/rewards/rewards.dart';
+import 'package:cpmms/src/features/widget/nav_sidebar/nav_sidebar.dart';
+import 'package:cpmms/src/features/widget/circular_button/circular_btn.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,12 +21,25 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final txtTheme = Theme.of(context).textTheme;
-    final controller = Get.put(DashboardController());
+    Get.put(NavigationController());
+    final controller = Get.put(ProfileController());
+    controller.getMemberDataFuture();
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.menu, color: Colors.black),
-        title: Text("Consult Pharmacy",
-            style: Theme.of(context).textTheme.headlineMedium),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+        title: Text("Consult Pharmacy", style: txtTheme.headlineMedium),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -37,40 +59,152 @@ class Dashboard extends StatelessWidget {
           ),
         ],
       ),
+      drawer: Sidebar(),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(tDashboardPadding),
-          child: FutureBuilder(
-            future: controller.getMemberData(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasData) {
-                  MemberModel memberData = snapshot.data as MemberModel;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hey, ${memberData.fullName}",
-                        style: txtTheme.bodyLarge,
+            padding: const EdgeInsets.all(tDashboardPadding),
+            child: Obx(() {
+              MemberModel memberData = controller.memberData.value;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Hey, ${memberData.fullName}",
+                    style: txtTheme.bodyLarge?.apply(fontSizeFactor: 1.1),
+                  ),
+                  const SizedBox(height: 15),
+                  Center(
+                    child: SizedBox(
+                      height: 100,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          CircularButton(
+                              icon: LineAwesomeIcons.identification_card,
+                              text: "Member Points",
+                              onPressed: () {
+                                Get.to(() => const MemberPoints(), transition: Transition.fadeIn);
+                              }),
+                          CircularButton(
+                              icon: LineAwesomeIcons.gift,
+                              text: "Rewards",
+                              onPressed: () {
+                                Get.to(() => const Rewards(), transition: Transition.fadeIn);
+                              }),
+                          CircularButton(
+                              icon: LineAwesomeIcons.history,
+                              text: "Purchase History",
+                              onPressed: () {
+                                Get.to(() => const PurchaseHistory(), transition: Transition.fadeIn);
+                              }),
+                          CircularButton(
+                              icon: LineAwesomeIcons.credit_card,
+                              text: "Online Payment",
+                              onPressed: () {
+                                Get.to(() => const Payment(), transition: Transition.fadeIn);
+                              }),
+                        ],
                       ),
-                      Text(
-                        "dashboard member",
-                        style: txtTheme.headlineLarge,
-                      ),
-                      const SizedBox(height: tDashboardPadding),
-                    ],
-                  );
-                } else if (snapshot.hasError) {
-                  return Center(child: Text(snapshot.error.toString()));
-                }else{
-                  return const Center(child: Text("Something went wrong"));
-                }
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Promotions",
+                    style: txtTheme.headlineLarge,
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: 200,
+                    child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          SizedBox(
+                            width: 340,
+                            height: 200,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10, top: 5),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: tCardBgColor),
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            "Promotion 1",
+                                            style: txtTheme.headlineSmall,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Flexible(
+                                            child: Image(
+                                                image: AssetImage(tLogoImage),
+                                                height: 110)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 340,
+                            height: 200,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10, top: 5),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: tCardBgColor),
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            "Promotion 2",
+                                            style: txtTheme.headlineSmall,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Flexible(
+                                            child: Image(
+                                                image: AssetImage(tLogoImage),
+                                                height: 110)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ]),
+                  ),
+                  const SizedBox(height: tDashboardPadding),
+                ],
+              );
+            })),
       ),
     );
   }

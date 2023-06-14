@@ -1,7 +1,7 @@
 import 'package:cpmms/src/constants/colors.dart';
 import 'package:cpmms/src/constants/sizes.dart';
 import 'package:cpmms/src/features/authentications/models/admin_model.dart';
-import 'package:cpmms/src/features/core/controllers/dashboard_controller.dart';
+import 'package:cpmms/src/features/core/controllers/profile_controller.dart';
 import 'package:cpmms/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,7 @@ class DashboardAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final txtTheme = Theme.of(context).textTheme;
-    final controller = Get.put(DashboardController());
+    final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.menu, color: Colors.black),

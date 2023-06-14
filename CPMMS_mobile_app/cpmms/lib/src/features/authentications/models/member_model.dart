@@ -1,18 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MemberModel {
-  final String? id;
+  final String id;
   final String fullName;
   final String email;
   final String IC;
   final int points;
+  final String pfp;
 
   const MemberModel({
-    this.id,
+    required this.id,
     required this.fullName,
     required this.email,
     required this.IC,
     required this.points,
+    required this.pfp,
   });
 
   toJson() {
@@ -21,6 +23,7 @@ class MemberModel {
       "email": email,
       "IC": IC,
       "points": points,
+      "pfp": pfp,
     };
   }
 
@@ -32,6 +35,7 @@ class MemberModel {
         fullName: data["fullName"],
         email: data["email"],
         IC: data["IC"],
-        points: data["points"]);
+        points: data["points"],
+        pfp: data["pfp"]);
   }
 }

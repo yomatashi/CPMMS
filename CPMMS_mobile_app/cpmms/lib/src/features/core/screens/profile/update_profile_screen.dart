@@ -2,7 +2,7 @@ import 'package:cpmms/src/constants/colors.dart';
 import 'package:cpmms/src/constants/image_strings.dart';
 import 'package:cpmms/src/constants/sizes.dart';
 import 'package:cpmms/src/features/authentications/models/member_model.dart';
-import 'package:cpmms/src/features/core/controllers/dashboard_controller.dart';
+import 'package:cpmms/src/features/core/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,7 +13,8 @@ class UpdateProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(DashboardController());
+    final controller = Get.put(ProfileController());
+    controller.getMemberDataFuture();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -56,16 +57,16 @@ class UpdateProfileScreen extends StatelessWidget {
                             height: 120,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
-                              child: const Image(
-                                image: AssetImage(tDefaultPfp),
-                              ),
+                              child: controller.imageUrl.value != "none" ? Image.network(controller.imageUrl.value) : Image.asset(tDefaultPfp),
                             ),
                           ),
                           Positioned(
                             bottom: 0,
                             right: 0,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                controller.pickAndUploadImage(memberData.id!);
+                              },
                               child: Container(
                                 width: 35,
                                 height: 35,
@@ -150,7 +151,8 @@ class UpdateProfileScreen extends StatelessWidget {
                                     fullName: fullName.text.trim(),
                                     email: email.text.trim(),
                                     IC: IC.text.trim(),
-                                    points: memberData.points);
+                                    points: memberData.points,
+                                    pfp: memberData.pfp);
 
                                 await controller.updateMember(newMemberData);
                               }
