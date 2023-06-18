@@ -18,7 +18,11 @@ def transaction(self):
         QMessageBox.warning(self, "Error", "Invalid payment amount value.", QMessageBox.Ok)
     else:
         memID = self.lbl_currentMem.text()
+        table = self.tbl_checkout
+
         if memID:
+            purchaseHistory = FirebaseMutator('purchaseHistory')
+            items_data = []
             # is member - add points rate rm1 = 1pt
             current_mempts = FirebaseAccessor('Member').read(memID)['points']
             new_pts = current_mempts + (self.total // 1)
@@ -29,9 +33,17 @@ def transaction(self):
             pts_track = FirebaseMutator('PointsTracking')
             new_pts_track = {'date': datetime.datetime.now().astimezone(None), 'memberID': memID, 'name': 'Points earned from purchase', 'pointsDiff': (self.total // 1)}
             pts_track.create_autoID(new_pts_track)
+            # update purchase history
+            for row in range(table.rowCount()):
+                item_data = {'item': table.item(row, 0).text(), 'qty': int(table.cellWidget(row, 3).text())}
+                items_data.append(item_data)
+            purchase_history_data = {'date': datetime.datetime.now().astimezone(None), 'memberID': memID, 'totalPrice': float("{:.2f}".format(self.total)), 'items': items_data, 'paymentMode': self.pymnt_mode.currentText()}
+            purchaseHistory.create_autoID(purchase_history_data)
+
         
-        table = self.tbl_checkout
+        # table = self.tbl_checkout
         inventory = FirebaseMutator('Inventory')
+        
         for row in range(table.rowCount()):
             # update stock of every inventory selected
             barcode = table.item(row, 0).text()

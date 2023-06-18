@@ -65,7 +65,7 @@ class UpdateProfileScreen extends StatelessWidget {
                             right: 0,
                             child: InkWell(
                               onTap: () {
-                                controller.pickAndUploadImage(memberData.id!);
+                                controller.pickAndUploadImage(memberData.id);
                               },
                               child: Container(
                                 width: 35,

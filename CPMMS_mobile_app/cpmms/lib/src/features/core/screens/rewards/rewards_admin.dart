@@ -3,19 +3,19 @@ import 'package:cpmms/src/constants/sizes.dart';
 import 'package:cpmms/src/features/core/controllers/nav_controller.dart';
 import 'package:cpmms/src/features/core/controllers/profile_controller.dart';
 import 'package:cpmms/src/features/core/screens/profile/profile_screen.dart';
+import 'package:cpmms/src/features/widget/nav_sidebar/nav_sidebar_admin.dart';
 import 'package:flutter/material.dart';
-import 'package:cpmms/src/features/widget/nav_sidebar/nav_sidebar.dart';
 import 'package:get/get.dart';
 
-class PurchaseHistory extends StatelessWidget {
-  const PurchaseHistory({Key? key}) : super(key: key);
+class RewardsManager extends StatelessWidget {
+  const RewardsManager({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final txtTheme = Theme.of(context).textTheme;
     Get.put(NavigationController());
     final controller = Get.put(ProfileController());
-    controller.getMemberDataFuture();
+    controller.getAdminDataFuture();
 
     return Scaffold(
       appBar: AppBar(
@@ -45,14 +45,14 @@ class PurchaseHistory extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                Get.to(() => const ProfileScreen(role: "Member"));
+                Get.to(() => const ProfileScreen(role: "Admin"));
               },
               icon: const Icon(Icons.person_2_outlined, color: Colors.black54),
             ),
           ),
         ],
       ),
-      drawer: Sidebar(),
+      drawer: SidebarAdmin(),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(tDashboardPadding),
@@ -60,7 +60,7 @@ class PurchaseHistory extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "PURCHASE HISTORY SCREEN",
+                "MEMBER REWARDS MANAGER SCREEN",
                 style: txtTheme.headlineLarge,
               )
             ],

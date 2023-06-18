@@ -1,10 +1,14 @@
 import 'package:cpmms/src/constants/colors.dart';
 import 'package:cpmms/src/constants/image_strings.dart';
 import 'package:cpmms/src/constants/sizes.dart';
+import 'package:cpmms/src/features/authentications/models/admin_model.dart';
 import 'package:cpmms/src/features/authentications/models/member_model.dart';
+import 'package:cpmms/src/features/core/controllers/promotion_controller.dart';
 import 'package:cpmms/src/features/core/screens/member_points/member_points.dart';
 import 'package:cpmms/src/features/core/screens/profile/update_profile_screen.dart';
+import 'package:cpmms/src/features/core/screens/promotion/promotion_admin.dart';
 import 'package:cpmms/src/features/core/screens/purchase_history/purchase_history.dart';
+import 'package:cpmms/src/features/core/screens/rewards/rewards_admin.dart';
 import 'package:cpmms/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:cpmms/src/features/core/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +16,16 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({required this.role, Key? key}) : super(key: key);
 
+  final String role;
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
-    controller.getMemberDataFuture();
+    role == "Member"
+        ? controller.getMemberDataFuture()
+        : controller.getAdminDataFuture();
+    final promoController = Get.put(PromotionController());
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -38,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
         child: Container(
             padding: const EdgeInsets.all(tDefaultSize),
             child: Obx(() {
-              if (controller.memberData.value != null) {
+              if (role == "Member") {
                 MemberModel memberData = controller.memberData.value;
                 var fullName = memberData.fullName;
                 var email = memberData.email;
@@ -50,7 +58,9 @@ class ProfileScreen extends StatelessWidget {
                         height: 120,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          child: controller.imageUrl.value != "none" ? Image.network(controller.imageUrl.value) : Image.asset(tDefaultPfp),
+                          child: controller.imageUrl.value != "none"
+                              ? Image.network(controller.imageUrl.value)
+                              : Image.asset(tDefaultPfp),
                         ),
                       ),
                     ]),
@@ -107,7 +117,74 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 );
               } else {
-                return const Center(child: CircularProgressIndicator());
+                AdminModel adminData = controller.adminData.value;
+                var fullName = adminData.fullName;
+                var email = adminData.email;
+                return Column(
+                  children: [
+                    Stack(children: [
+                      SizedBox(
+                        width: 120,
+                        height: 120,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.asset(tDefaultPfp),
+                        ),
+                      ),
+                    ]),
+                    const SizedBox(height: 10),
+                    Text(fullName,
+                        style: Theme.of(context).textTheme.headlineMedium),
+                    Text(email, style: Theme.of(context).textTheme.bodyLarge),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: 200,
+                      child: ElevatedButton(
+                        onPressed: () => Get.snackbar("Information",
+                            "Please update your user information in CPMMS desktop app.", colorText: Colors.white, backgroundColor: Colors.blue, icon: const Icon(LineAwesomeIcons.info)),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: tPrimaryColor,
+                            side: BorderSide.none,
+                            shape: const StadiumBorder()),
+                        child: const Text(
+                          "Edit Profile",
+                          style: TextStyle(color: tDarkColor),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    const Divider(),
+                    const SizedBox(height: 10),
+
+                    // MENU
+                    ProfileMenuWidget(
+                      title: "Edit member rewards",
+                      icon: LineAwesomeIcons.gift,
+                      onPress: () {
+                        Get.off(const RewardsManager());
+                      },
+                    ),
+                    ProfileMenuWidget(
+                      title: "Edit promotion",
+                      icon: LineAwesomeIcons.tags,
+                      onPress: () {
+                        promoController.isLoading.value = true;
+                        Get.off(const PromotionManager());
+                      },
+                    ),
+                    const Divider(color: Colors.grey),
+                    const SizedBox(height: 30),
+                    ProfileMenuWidget(
+                      title: "Logout",
+                      icon: LineAwesomeIcons.alternate_sign_out,
+                      textColor: Colors.red,
+                      endIcon: false,
+                      onPress: () {
+                        AuthenticationRepository.instance.logout();
+                      },
+                    ),
+                  ],
+                );
               }
             })),
       ),

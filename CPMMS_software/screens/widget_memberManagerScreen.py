@@ -81,7 +81,7 @@ def registerNewMember(self):
             counter = FirebaseAccessor('counter').read("indices")
             counterUpdate = FirebaseMutator('counter')
 
-            Memberdata = {'email': email, 'fullName': fullName, 'IC': ICnum, 'points': 0}
+            Memberdata = {'email': email, 'fullName': fullName, 'IC': ICnum, 'points': 0, 'pfp': ""}
             Member.create(Memberdata, "mem" + str(counter['mem']+1))
             new_file_name = fullName+"-mem"+str(counter['mem']+1)+".jpg"
             counterUpdate.update("indices", {'mem': counter['mem']+1})

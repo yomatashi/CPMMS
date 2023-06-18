@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cpmms/src/features/authentications/models/admin_model.dart';
 import 'package:cpmms/src/features/authentications/models/member_model.dart';
 import 'package:cpmms/src/repository/admin_repository/admin_repository.dart';
 import 'package:cpmms/src/repository/authentication_repository/authentication_repository.dart';
@@ -20,6 +21,8 @@ class ProfileController extends GetxController {
 
   Rx<MemberModel> memberData = Rx<MemberModel>(
       const MemberModel(id: '',fullName: '', email: '', IC: '', points: 0, pfp: ''));
+  Rx<AdminModel> adminData = Rx<AdminModel>(
+      const AdminModel(id: '',fullName: '', email: '', position: ''));
 
   getMemberData() {
     final email = _authRepo.firebaseUser.value?.email;
@@ -57,7 +60,7 @@ class ProfileController extends GetxController {
     if (pickedImage != null) {
       final file = File(pickedImage.path);
       final customFileName =
-          'pfp/${memID}.jpg';
+          'pfp/$memID.jpg';
       await uploadImageToFirebase(file, customFileName);
     }
   }
@@ -101,6 +104,17 @@ class ProfileController extends GetxController {
     final email = _authRepo.firebaseUser.value?.email;
     if (email != null) {
       return _adminRepo.getAdminDetails(email);
+    } else {
+      Get.snackbar("Error", "Login to continue");
+    }
+  }
+
+  Future<void> getAdminDataFuture() async {
+    final email = _authRepo.firebaseUser.value?.email;
+    if (email != null) {
+      final data = await _adminRepo.getAdminDetails(email);
+      adminData.value = data;
+      // Get.find<ProfileController>().getPFP(data.pfp);
     } else {
       Get.snackbar("Error", "Login to continue");
     }

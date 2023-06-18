@@ -54,7 +54,7 @@ class MemberPoints extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                Get.to(() => const ProfileScreen());
+                Get.to(() => const ProfileScreen(role: "Member"));
               },
               icon: const Icon(Icons.person_2_outlined, color: Colors.black54),
             ),
@@ -110,7 +110,7 @@ class MemberPoints extends StatelessWidget {
                             ptsHistoryController.ptsHistoryData.value[index];
                         String formattedDateTime = dateTimeFormat.format(item.date.toDate());
                         return ListTile(
-                          contentPadding: EdgeInsets.all(0),
+                          contentPadding: const EdgeInsets.all(0),
                           title: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Row(children: [

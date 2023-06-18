@@ -45,7 +45,7 @@ class Payment extends StatelessWidget {
             ),
             child: IconButton(
               onPressed: () {
-                Get.to(() => const ProfileScreen());
+                Get.to(() => const ProfileScreen(role: "Member"));
               },
               icon: const Icon(Icons.person_2_outlined, color: Colors.black54),
             ),
