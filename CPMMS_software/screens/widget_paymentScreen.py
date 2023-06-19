@@ -35,8 +35,13 @@ def transaction(self):
             pts_track.create_autoID(new_pts_track)
             # update purchase history
             for row in range(table.rowCount()):
-                item_data = {'item': table.item(row, 0).text(), 'qty': int(table.cellWidget(row, 3).text())}
-                items_data.append(item_data)
+                barcode = table.item(row, 0).text()
+                if not barcode == "-":
+                    item_data = {'itemID': table.item(row, 0).text(), 'itemName': table.item(row, 1).text(), 'qty': int(table.cellWidget(row, 3).text()), 'itemPrice': float(table.item(row, 2).text())}
+                    items_data.append(item_data)
+                else:
+                    item_data = {'itemID': table.item(row, 0).text(), 'itemName': table.item(row, 1).text(), 'qty': int(table.item(row, 3).text()), 'itemPrice': float(table.item(row, 2).text())}
+                    items_data.append(item_data)
             purchase_history_data = {'date': datetime.datetime.now().astimezone(None), 'memberID': memID, 'totalPrice': float("{:.2f}".format(self.total)), 'items': items_data, 'paymentMode': self.pymnt_mode.currentText()}
             purchaseHistory.create_autoID(purchase_history_data)
 
