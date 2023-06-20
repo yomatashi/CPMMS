@@ -152,7 +152,7 @@ class UpdatePromotionScreen extends StatelessWidget {
                                               promotionName:
                                                   promoName.text.trim(),
                                               details: promoDetails.text.trim(),
-                                              img: promoData.img);
+                                              img: promoData.img != "" ? promoData.img : "promotion/${promoData.id}.jpg");
 
                                           await controller
                                               .updatePromo(newPromodata);

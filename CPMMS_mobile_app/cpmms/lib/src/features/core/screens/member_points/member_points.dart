@@ -100,7 +100,7 @@ class MemberPoints extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: height * 0.7,
+                    height: height * 0.5,
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount:

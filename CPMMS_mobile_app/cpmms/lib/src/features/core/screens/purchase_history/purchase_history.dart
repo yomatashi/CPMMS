@@ -4,22 +4,12 @@ import 'package:cpmms/src/features/authentications/models/member_model.dart';
 import 'package:cpmms/src/features/core/controllers/nav_controller.dart';
 import 'package:cpmms/src/features/core/controllers/profile_controller.dart';
 import 'package:cpmms/src/features/core/controllers/purchase_controller.dart';
-import 'package:cpmms/src/features/core/models/purchase_model.dart';
 import 'package:cpmms/src/features/core/screens/profile/profile_screen.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:cpmms/src/features/widget/nav_sidebar/nav_sidebar.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
-// class PurchaseHistory extends StatefulWidget {
-//   const PurchaseHistory({
-//     super.key,
-//   });
-
-//   @override
-//   _PurchaseHistoryState createState() => _PurchaseHistoryState();
-// }
 
 class PurchaseHistory extends StatelessWidget {
   const PurchaseHistory({Key? key}) : super(key: key);
@@ -32,7 +22,6 @@ class PurchaseHistory extends StatelessWidget {
     controller.getMemberDataFuture();
     final purchaseController = Get.put(TrackPurchaseController());
     DateFormat dateTimeFormat = DateFormat('dd-MM-yyyy HH:mm');
-
     var mediaQuery = MediaQuery.of(context);
     double height = mediaQuery.size.height;
 

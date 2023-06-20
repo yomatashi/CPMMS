@@ -100,12 +100,12 @@ class Dashboard extends StatelessWidget {
                               onPressed: () {
                                 Get.to(() => const PurchaseHistory(), transition: Transition.fadeIn);
                               }),
-                          CircularButton(
-                              icon: LineAwesomeIcons.credit_card,
-                              text: "Online Payment",
-                              onPressed: () {
-                                Get.to(() => const Payment(), transition: Transition.fadeIn);
-                              }),
+                          // CircularButton(
+                          //     icon: LineAwesomeIcons.credit_card,
+                          //     text: "Online Payment",
+                          //     onPressed: () {
+                          //       Get.to(() => const Payment(), transition: Transition.fadeIn);
+                          //     }),
                         ],
                       ),
                     ),

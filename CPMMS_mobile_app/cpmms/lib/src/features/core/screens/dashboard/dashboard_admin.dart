@@ -5,6 +5,7 @@ import 'package:cpmms/src/features/authentications/models/admin_model.dart';
 import 'package:cpmms/src/features/core/controllers/nav_controller.dart';
 import 'package:cpmms/src/features/core/controllers/profile_controller.dart';
 import 'package:cpmms/src/features/core/controllers/promotion_controller.dart';
+import 'package:cpmms/src/features/core/controllers/rewards_controller.dart';
 import 'package:cpmms/src/features/core/screens/promotion/promotion_admin.dart';
 import 'package:cpmms/src/features/core/screens/rewards/rewards_admin.dart';
 import 'package:cpmms/src/features/widget/circular_button/circular_btn.dart';
@@ -25,6 +26,8 @@ class DashboardAdmin extends StatelessWidget {
     controller.getAdminDataFuture();
     final promotionController = Get.put(PromotionController());
     promotionController.getPromotionList();
+    final rewardsController = Get.put(RewardsController());
+    rewardsController.getRewardsList();
     return Scaffold(
       appBar: AppBar(
         leading: Builder(
@@ -84,6 +87,8 @@ class DashboardAdmin extends StatelessWidget {
                               icon: LineAwesomeIcons.gift,
                               text: "Rewards Manager",
                               onPressed: () {
+                                rewardsController.isLoading.value = true;
+                                rewardsController.isLoading2.value = true;
                                 Get.to(() => const RewardsManager(),
                                     transition: Transition.fadeIn);
                               }),

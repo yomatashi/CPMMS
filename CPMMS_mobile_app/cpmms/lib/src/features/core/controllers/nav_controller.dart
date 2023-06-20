@@ -1,5 +1,6 @@
 import 'package:cpmms/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:cpmms/src/features/core/screens/dashboard/dashboard_admin.dart';
+import 'package:cpmms/src/features/core/screens/dashboard/dashboard_guest.dart';
 import 'package:cpmms/src/features/core/screens/member_points/member_points.dart';
 import 'package:cpmms/src/features/core/screens/payment/payment.dart';
 import 'package:cpmms/src/features/core/screens/promotion/promotion_admin.dart';
@@ -44,6 +45,15 @@ class NavigationController extends GetxController {
         break;
       case 2:
         Get.off(const PromotionManager(), transition: Transition.fadeIn);
+        break;
+    }
+  }
+
+  void changePageGuest(int index) {
+    selectedIndex.value = index;
+    switch (index) {
+      case 0:
+        Get.off(const DashboardGuest(), transition: Transition.fadeIn);
         break;
     }
   }

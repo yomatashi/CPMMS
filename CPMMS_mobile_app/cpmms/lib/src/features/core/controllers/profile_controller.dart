@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:cpmms/src/features/authentications/models/admin_model.dart';
 import 'package:cpmms/src/features/authentications/models/member_model.dart';
+import 'package:cpmms/src/features/core/models/rewards_model.dart';
 import 'package:cpmms/src/repository/admin_repository/admin_repository.dart';
 import 'package:cpmms/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:cpmms/src/repository/member_pts_repository/pts_repository.dart';
 import 'package:cpmms/src/repository/member_repository/member_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,6 +17,7 @@ class ProfileController extends GetxController {
 
   final _authRepo = Get.put(AuthenticationRepository());
   final _memberRepo = Get.put(MemberRepository());
+  final _ptsRepo = Get.put(PointsRepository());
   final _adminRepo = Get.put(AdminRepository());
   final imageUrl = ''.obs;
   final picker = ImagePicker();
@@ -98,6 +101,12 @@ class ProfileController extends GetxController {
       backgroundColor: Colors.green,
       colorText: Colors.white,
     );
+  }
+
+  updateMemberNoSnackbar(MemberModel member, RewardsModel rewards) async {
+    await _memberRepo.updateMember(member);
+    await _ptsRepo.createPoints(rewards.cost, rewards.details, member.id);
+    Get.find<ProfileController>().getMemberDataFuture();
   }
 
   getAdminData() {

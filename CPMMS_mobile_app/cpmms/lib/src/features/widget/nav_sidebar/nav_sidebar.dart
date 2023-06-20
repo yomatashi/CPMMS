@@ -42,12 +42,12 @@ class Sidebar extends StatelessWidget {
             title: Text('Purchase History', style: txtTheme.headlineSmall),
             onTap: () => navigateToPage(3),
           ),
-          ListTile(
-            leading: const Icon(LineAwesomeIcons.credit_card,
-                color: tPrimaryColor),
-            title: Text('Online Payment', style: txtTheme.headlineSmall),
-            onTap: () => navigateToPage(4),
-          ),
+          // ListTile(
+          //   leading: const Icon(LineAwesomeIcons.credit_card,
+          //       color: tPrimaryColor),
+          //   title: Text('Online Payment', style: txtTheme.headlineSmall),
+          //   onTap: () => navigateToPage(4),
+          // ),
         ],
       ),
     );

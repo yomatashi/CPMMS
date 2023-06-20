@@ -1,4 +1,5 @@
 import 'package:cpmms/firebase_options.dart';
+import 'package:cpmms/src/features/authentications/screens/welcome/splash_screen.dart';
 import 'package:cpmms/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.leftToRightWithFade,
-      home: const CircularProgressIndicator(),
+      home: const SplashScreen(),
     );
   }
 }
