@@ -4,6 +4,7 @@ import 'package:cpmms/src/constants/sizes.dart';
 import 'package:cpmms/src/features/authentications/models/admin_model.dart';
 import 'package:cpmms/src/features/authentications/models/member_model.dart';
 import 'package:cpmms/src/features/core/controllers/promotion_controller.dart';
+import 'package:cpmms/src/features/core/controllers/rewards_controller.dart';
 import 'package:cpmms/src/features/core/screens/member_points/member_points.dart';
 import 'package:cpmms/src/features/core/screens/profile/update_profile_screen.dart';
 import 'package:cpmms/src/features/core/screens/promotion/promotion_admin.dart';
@@ -26,6 +27,8 @@ class ProfileScreen extends StatelessWidget {
         ? controller.getMemberDataFuture()
         : controller.getAdminDataFuture();
     final promoController = Get.put(PromotionController());
+    final rewardsController = Get.put(RewardsController());
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -141,7 +144,10 @@ class ProfileScreen extends StatelessWidget {
                       width: 200,
                       child: ElevatedButton(
                         onPressed: () => Get.snackbar("Information",
-                            "Please update your user information in CPMMS desktop app.", colorText: Colors.white, backgroundColor: Colors.blue, icon: const Icon(LineAwesomeIcons.info)),
+                            "Please update your user information in CPMMS desktop app.",
+                            colorText: Colors.white,
+                            backgroundColor: Colors.blue,
+                            icon: const Icon(LineAwesomeIcons.info)),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: tPrimaryColor,
                             side: BorderSide.none,
@@ -161,6 +167,8 @@ class ProfileScreen extends StatelessWidget {
                       title: "Edit member rewards",
                       icon: LineAwesomeIcons.gift,
                       onPress: () {
+                        rewardsController.isLoading.value = true;
+                        rewardsController.isLoading2.value = true;
                         Get.off(const RewardsManager());
                       },
                     ),

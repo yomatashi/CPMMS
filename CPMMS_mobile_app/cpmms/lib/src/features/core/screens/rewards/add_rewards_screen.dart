@@ -157,7 +157,7 @@ class AddRewardsScreen extends StatelessWidget {
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
                         child: const Text(
-                          "Add Promotion",
+                          "Add Voucher",
                           style: TextStyle(color: tDarkColor),
                         ),
                       ),

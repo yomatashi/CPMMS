@@ -164,8 +164,9 @@ def delete_member(self):
             QMessageBox.warning(self, "Error", del_msg, QMessageBox.Ok)
         else:
             firebase_storage = FirebaseStorage()
-            new_file_name = mem_data['fullName']+"-"+mem_id+".jpg"
-            firebase_storage.delete_file("img", new_file_name)
+            # new_file_name = mem_data['fullName']+"-"+mem_id+".jpg"
+            # firebase_storage.delete_file("img", new_file_name)
+            firebase_storage.delete_file_has_string(mem_id)
             FirebaseMutator('Member').delete(mem_id)
             self.stackedWidget.setCurrentWidget(self.listMember)
             QMessageBox.information(self, "Success", "Selected member data deleted!\nPlease refresh member list", QMessageBox.Ok)

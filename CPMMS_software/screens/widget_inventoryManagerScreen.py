@@ -12,6 +12,7 @@ def addItemScreen(self):
     # clear screen
     self.input_barcode.clear()
     self.input_item_name.clear()
+    self.input_item_category.clear()
     self.input_price.clear()
     self.input_stock.clear()
 
@@ -20,6 +21,7 @@ def addItemScreen(self):
     validator = QRegularExpressionValidator(regexDigit)
     self.input_barcode.setValidator(validator)
     self.input_item_name.setPlaceholderText("Item name")
+    self.input_item_category.setPlaceholderText("Item category")
     self.input_price.setPlaceholderText("Price (RM)")
     regexAmnt = QRegularExpression(r'^[0-9]+(\.[0-9]{1,2})?$')
     validator2 = QRegularExpressionValidator(regexAmnt)
@@ -45,13 +47,16 @@ def listItemScreen(self):
         name_item = QTableWidgetItem(item['itemName'])
         tableInv.setItem(row, 1, name_item)
 
+        category_name = QTableWidgetItem(item['category'])
+        tableInv.setItem(row, 2, category_name)
+
         price_item = QTableWidgetItem(str("{:.2f}".format(item['price'])))
         price_item.setTextAlignment(Qt.AlignCenter)
-        tableInv.setItem(row, 2, price_item)
+        tableInv.setItem(row, 3, price_item)
 
         stock_item = QTableWidgetItem(str(item['stock']))
         stock_item.setTextAlignment(Qt.AlignCenter)
-        tableInv.setItem(row, 3, stock_item)
+        tableInv.setItem(row, 4, stock_item)
         row += 1
 
 def browseExcel(self):
@@ -75,9 +80,10 @@ def uploadExcel(self):
             for index, row in df.iterrows():
                 barcodeID = row['BARCODE ID']
                 name = row['DESCRIPTION (ITEM NAME)']
+                category = row['ITEM CATEGORY']
                 price = row['SALE PRICE (RM)']
                 stock = row['IN STOCK']
-                Inventorydata = {'barcode': barcodeID, 'itemName': name, 'price': price, 'stock': stock}
+                Inventorydata = {'barcode': barcodeID, 'itemName': name, 'category': category ,'price': price, 'stock': stock}
                 Inventory.create(Inventorydata, barcodeID)
                 
             ret = QMessageBox.information(self, 'Success', 'The inventory data from the selected excel file has been added into database.', QMessageBox.Ok)
@@ -87,20 +93,22 @@ def uploadExcel(self):
 def createItem(self):
     barcodeID = self.input_barcode.text()
     name = self.input_item_name.text()
+    category = self.input_item_category.text()
     price = self.input_price.text()
     stock = self.input_stock.text()
 
-    if not all([barcodeID, name, price, stock]):
+    if not all([barcodeID, name, category, price, stock]):
         QMessageBox.warning(self, "Error", "Please fill in the empty field(s)", QMessageBox.Ok)
     else:
         Inventory = FirebaseMutator('Inventory')
-        Inventorydata = {'barcode': barcodeID, 'itemName': name, 'price': float(price), 'stock': int(stock)}
+        Inventorydata = {'barcode': barcodeID, 'itemName': name, 'category': category, 'price': float(price), 'stock': int(stock)}
         Inventory.create(Inventorydata, barcodeID)
 
         ret = QMessageBox.information(self, 'Success', 'Item info has been added into database.', QMessageBox.Ok)
         if ret == QMessageBox.Ok:
             self.input_barcode.clear()
             self.input_item_name.clear()
+            self.input_item_category.clear()
             self.input_price.clear()
             self.input_stock.clear()
 
@@ -125,13 +133,16 @@ def searchItem(self):
             name_item = QTableWidgetItem(item['itemName'])
             tableInv.setItem(row, 1, name_item)
 
+            category_name = QTableWidgetItem(item['category'])
+            tableInv.setItem(row, 2, category_name)
+
             price_item = QTableWidgetItem(str("{:.2f}".format(item['price'])))
             price_item.setTextAlignment(Qt.AlignCenter)
-            tableInv.setItem(row, 2, price_item)
+            tableInv.setItem(row, 3, price_item)
 
             stock_item = QTableWidgetItem(str(item['stock']))
             stock_item.setTextAlignment(Qt.AlignCenter)
-            tableInv.setItem(row, 3, stock_item)
+            tableInv.setItem(row, 4, stock_item)
             row += 1
 
 def show_item_details(self):
@@ -148,6 +159,7 @@ def show_item_details(self):
     validator = QRegularExpressionValidator(regexDigit)
     self.input_barcodeID_edit.setValidator(validator)
     self.input_itemName_edit.setText(itemInfo['itemName'])
+    self.input_itemCategory_edit.setText(itemInfo['category'])
     self.input_price_edit.setText(str("{:.2f}".format(itemInfo['price'])))
     regexAmnt = QRegularExpression(r'^[0-9]+(\.[0-9]{1,2})?$')
     validator2 = QRegularExpressionValidator(regexAmnt)
@@ -166,10 +178,11 @@ def delete_item(self):
 def update_item(self):
     barcode = self.input_barcodeID_edit.text()
     itemName = self.input_itemName_edit.text()
+    category = self.input_itemCategory_edit.text()
     price = float(self.input_price_edit.text())
     stock = int(self.input_stock_edit.text())
 
     update_item = FirebaseMutator('Inventory')
-    update_data = {'barcode': barcode, 'itemName': itemName, 'price': price, 'stock': stock}
+    update_data = {'barcode': barcode, 'itemName': itemName, 'category': category, 'price': price, 'stock': stock}
     update_item.update(barcode, update_data)
     QMessageBox.information(self, "Updated", "Item information successfully updated.", QMessageBox.Ok)

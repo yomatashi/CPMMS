@@ -42,7 +42,7 @@ class PromotionManager extends StatelessWidget {
             );
           },
         ),
-        title: Text("Consult Pharmacy", style: txtTheme.headlineMedium),
+        title: Text("Consult Pharmacy", style: txtTheme.headlineSmall?.apply(fontSizeFactor: 0.9)),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,

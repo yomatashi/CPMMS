@@ -197,7 +197,7 @@ class UpdateRewardsScreen extends StatelessWidget {
                                         side: BorderSide.none,
                                         shape: const StadiumBorder()),
                                     child: const Text(
-                                      "Update Promotion",
+                                      "Update Voucher",
                                       style: TextStyle(color: tDarkColor),
                                     ),
                                   ),
@@ -218,7 +218,7 @@ class UpdateRewardsScreen extends StatelessWidget {
                                         side: BorderSide.none,
                                         shape: const StadiumBorder()),
                                     child: const Text(
-                                      "Delete Promotion",
+                                      "Delete Voucher",
                                       style: TextStyle(color: tDarkColor),
                                     ),
                                   ),

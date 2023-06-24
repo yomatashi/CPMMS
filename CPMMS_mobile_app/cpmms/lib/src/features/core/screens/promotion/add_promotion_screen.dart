@@ -27,7 +27,7 @@ class AddPromotionScreen extends StatelessWidget {
         ),
         title: Text(
           "Add New Promotion",
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context).textTheme.headlineSmall?.apply(fontSizeFactor: 0.9),
         ),
         centerTitle: true,
         elevation: 0,

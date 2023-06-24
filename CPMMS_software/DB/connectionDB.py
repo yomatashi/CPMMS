@@ -95,6 +95,14 @@ class FirebaseStorage:
         blob.delete()
         print("File deleted!")
 
+    def delete_file_has_string(self, memID):
+        blobs = self.bucket.list_blobs(prefix="img")
+        for blob in blobs:
+            if memID in blob.name:
+                blob.delete()
+                print("File deleted!")
+
+
 class FirebaseAuthentication:
     # def __init__(self):
 

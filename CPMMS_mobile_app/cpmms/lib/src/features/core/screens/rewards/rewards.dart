@@ -65,7 +65,7 @@ class Rewards extends StatelessWidget {
               );
             },
           ),
-          title: Text("Consult Pharmacy", style: txtTheme.headlineMedium),
+          title: Text("Consult Pharmacy", style: txtTheme.headlineSmall?.apply(fontSizeFactor: 0.9)),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -90,93 +90,115 @@ class Rewards extends StatelessWidget {
         body: TabBarView(
           children: [
             TabView1(rewardsController: rewardsController, height: height),
-            SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(tDashboardPadding),
-                child: Obx(() {
-                  MemberModel memberData = controller.memberData.value;
-                  rewardsController.getClaimRewardsList(memberData.id);
-                  List<ClaimRewardsModel> claimRwrd =
-                      rewardsController.claimRewardsData.value;
-                  List<RewardsModel> currRewards =
-                      rewardsController.claimRewardsDetails.value;
-                  List<String> imgURL =
-                      rewardsController.imgURLforClaimRwrd.value;
-                  if (rewardsController.isLoading2.value == false) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                            height: height,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: claimRwrd.length,
-                              itemBuilder: (context, index) {
-                                // if (rewardsController.singleImageUrl.value !=
-                                // '') {
-                                return InkWell(
-                                  onTap: () {
-                                    Get.to(() => ClaimRewardsScreen(imgURL: imgURL[index], details: currRewards[index].details, instruction: currRewards[index].instruction, claimRewardsID: claimRwrd[index].id));
-                                  },
-                                  child: ListTile(
-                                    contentPadding: const EdgeInsets.all(0),
-                                    title: FittedBox(
-                                      fit: BoxFit.scaleDown,
-                                      child: Row(children: [
-                                        SizedBox(
-                                          width: width * 0.05,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text((index + 1).toString(),
-                                                  style:
-                                                      txtTheme.headlineSmall),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.35,
-                                          child: imgURL[index] != "none"
-                                              ? Image.network(imgURL[index])
-                                              : Image.asset(tLogoImage),
-                                        ),
-                                        SizedBox(width: width * 0.05),
-                                        SizedBox(
-                                          width: width * 0.55,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                currRewards[index].details,
-                                                style: txtTheme.headlineSmall,
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ]),
-                                    ),
-                                  ),
-                                );
-                                // } else {
-                                //   return const Center(
-                                //       child: CircularProgressIndicator());
-                                // }
-                              },
-                            ))
-                      ],
-                    );
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                }),
-              ),
-            ),
+            TabView2(controller: controller, rewardsController: rewardsController, height: height, width: width, txtTheme: txtTheme),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TabView2 extends StatelessWidget {
+  const TabView2({
+    super.key,
+    required this.controller,
+    required this.rewardsController,
+    required this.height,
+    required this.width,
+    required this.txtTheme,
+  });
+
+  final ProfileController controller;
+  final RewardsController rewardsController;
+  final double height;
+  final double width;
+  final TextTheme txtTheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(tDashboardPadding),
+        child: Obx(() {
+          MemberModel memberData = controller.memberData.value;
+          rewardsController.getClaimRewardsList(memberData.id);
+          List<ClaimRewardsModel> claimRwrd =
+              rewardsController.claimRewardsData.value;
+          List<RewardsModel> currRewards =
+              rewardsController.claimRewardsDetails.value;
+          List<String> imgURL =
+              rewardsController.imgURLforClaimRwrd.value;
+          if (rewardsController.isLoading2.value == false) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                    height: height,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: claimRwrd.length,
+                      itemBuilder: (context, index) {
+                        // if (rewardsController.singleImageUrl.value !=
+                        // '') {
+                        return InkWell(
+                          onTap: () {
+                            Get.to(() => ClaimRewardsScreen(imgURL: imgURL[index], details: currRewards[index].details, instruction: currRewards[index].instruction, claimRewardsID: claimRwrd[index].id));
+                          },
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.all(0),
+                            title: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Row(children: [
+                                SizedBox(
+                                  width: width * 0.05,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text((index + 1).toString(),
+                                          style:
+                                              txtTheme.headlineSmall),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: width * 0.35,
+                                  child: imgURL[index] != "none"
+                                      ? Image.network(imgURL[index])
+                                      : Image.asset(tLogoImage),
+                                ),
+                                SizedBox(width: width * 0.05),
+                                SizedBox(
+                                  width: width * 0.55,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        currRewards[index].details,
+                                        style: txtTheme.headlineSmall,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]),
+                            ),
+                          ),
+                        );
+                        // } else {
+                        //   return const Center(
+                        //       child: CircularProgressIndicator());
+                        // }
+                      },
+                    ))
+              ],
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        }),
       ),
     );
   }
@@ -221,7 +243,7 @@ class TabView1 extends StatelessWidget {
                               child: Column(
                                 children: [
                                   SizedBox(
-                                      height: 110,
+                                      height: 92,
                                       child:
                                           rewardsController.imageUrl.value[i] !=
                                                   "none"
