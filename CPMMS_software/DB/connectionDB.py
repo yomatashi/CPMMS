@@ -5,7 +5,7 @@ import DB.firebaseconfig
 import pyrebase
 
 # Fetch the service account key JSON file contents
-cred = credentials.Certificate("DB/serviceAccountKey.json")
+cred = credentials.Certificate("D:/Github/CPMMS/CPMMS_software/DB/serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 bucket_name = DB.firebaseconfig.get_bucket_name()
 

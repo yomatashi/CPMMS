@@ -122,9 +122,9 @@ class TabView2 extends StatelessWidget {
         child: Obx(() {
           MemberModel memberData = controller.memberData.value;
           rewardsController.getClaimRewardsList(memberData.id);
-          List<ClaimRewardsModel> claimRwrd =
+          List<ClaimRewardsModel> claimRwrdData =
               rewardsController.claimRewardsData.value;
-          List<RewardsModel> currRewards =
+          List<RewardsModel> claimRwrdDetails =
               rewardsController.claimRewardsDetails.value;
           List<String> imgURL =
               rewardsController.imgURLforClaimRwrd.value;
@@ -136,13 +136,13 @@ class TabView2 extends StatelessWidget {
                     height: height,
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: claimRwrd.length,
+                      itemCount: claimRwrdData.length,
                       itemBuilder: (context, index) {
                         // if (rewardsController.singleImageUrl.value !=
                         // '') {
                         return InkWell(
                           onTap: () {
-                            Get.to(() => ClaimRewardsScreen(imgURL: imgURL[index], details: currRewards[index].details, instruction: currRewards[index].instruction, claimRewardsID: claimRwrd[index].id));
+                            Get.to(() => ClaimRewardsScreen(imgURL: imgURL[index], details: claimRwrdDetails[index].details, instruction: claimRwrdDetails[index].instruction, claimRewardsID: claimRwrdData[index].id));
                           },
                           child: ListTile(
                             contentPadding: const EdgeInsets.all(0),
@@ -175,7 +175,7 @@ class TabView2 extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        currRewards[index].details,
+                                        claimRwrdDetails[index].details,
                                         style: txtTheme.headlineSmall,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,

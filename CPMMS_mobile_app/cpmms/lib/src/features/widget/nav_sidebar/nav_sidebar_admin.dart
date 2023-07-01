@@ -27,12 +27,12 @@ class SidebarAdmin extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(LineAwesomeIcons.gift, color: tPrimaryColor),
-            title: Text('Rewards Manager', style: txtTheme.headlineSmall),
+            title: Text('Manage Rewards', style: txtTheme.headlineSmall),
             onTap: () => navigateToPage(1),
           ),
           ListTile(
             leading: const Icon(LineAwesomeIcons.tags, color: tPrimaryColor),
-            title: Text('Promotion Manager', style: txtTheme.headlineSmall),
+            title: Text('Manage Promotion', style: txtTheme.headlineSmall),
             onTap: () => navigateToPage(2),
           ),
         ],

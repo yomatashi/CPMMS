@@ -80,9 +80,9 @@ class RewardsController extends GetxController {
     claimRewardsData.value = data;
     // get the claim rewards information/details
     for (int i = 0; i < claimRewardsData.value.length; i++) {
-      final rewardsData = await _rewardsRepo
+      final rewardsDataItem = await _rewardsRepo
           .getRewardsDetails(claimRewardsData.value[i].rewardsID);
-      claimRewardsDetails.add(rewardsData);
+      claimRewardsDetails.add(rewardsDataItem);
 
       try {
         final ref = firebase_storage.FirebaseStorage.instance
@@ -94,6 +94,7 @@ class RewardsController extends GetxController {
         imgURLforClaimRwrd.add("none");
       }
     }
+    // print(claimRewardsDetails.value);
     isLoading2.value = false;
   }
 

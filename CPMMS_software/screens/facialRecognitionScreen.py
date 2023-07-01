@@ -126,9 +126,15 @@ class facialRecog(QDialog, Ui_OutputDialog):
             message = "Name: "+ member_data['fullName'] + "\nIC number: " + member_data['IC'] + "\nPoints: " + str(member_data['points']) + "\n\nSet this member for checkout process?"
             ret = QMessageBox.information(self, "Member information", message, QMessageBox.Yes | QMessageBox.No)
             if ret == QMessageBox.Yes:
+                print("Closing camera...")
+                self.th.cap.release()
+                cv2.destroyAllWindows()
+                self.th.status = False
+                self.th.terminate()
+                # Give time for the thread to finish
+                time.sleep(1)
                 self.accept()
                 self.memID = self.MemberIDLabel.text()
-                self.closeEvent(event=exit)
             else:
                 print("User chose No")
         else:

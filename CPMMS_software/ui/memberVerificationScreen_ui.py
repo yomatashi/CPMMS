@@ -1806,20 +1806,6 @@ class Ui_Form(object):
         self.gridLayout_18 = QGridLayout(self.listItem)
         self.gridLayout_18.setObjectName(u"gridLayout_18")
         self.gridLayout_18.setContentsMargins(0, 0, 0, 0)
-        self.frame_70 = QFrame(self.listItem)
-        self.frame_70.setObjectName(u"frame_70")
-        self.frame_70.setFrameShape(QFrame.StyledPanel)
-        self.frame_70.setFrameShadow(QFrame.Raised)
-
-        self.gridLayout_18.addWidget(self.frame_70, 0, 0, 1, 7)
-
-        self.frame_73 = QFrame(self.listItem)
-        self.frame_73.setObjectName(u"frame_73")
-        self.frame_73.setFrameShape(QFrame.StyledPanel)
-        self.frame_73.setFrameShadow(QFrame.Raised)
-
-        self.gridLayout_18.addWidget(self.frame_73, 1, 0, 2, 1)
-
         self.label_35 = QLabel(self.listItem)
         self.label_35.setObjectName(u"label_35")
         sizePolicy1.setHeightForWidth(self.label_35.sizePolicy().hasHeightForWidth())
@@ -1831,20 +1817,6 @@ class Ui_Form(object):
         self.label_35.setAlignment(Qt.AlignCenter)
 
         self.gridLayout_18.addWidget(self.label_35, 1, 1, 1, 1)
-
-        self.frame_69 = QFrame(self.listItem)
-        self.frame_69.setObjectName(u"frame_69")
-        self.frame_69.setFrameShape(QFrame.StyledPanel)
-        self.frame_69.setFrameShadow(QFrame.Raised)
-
-        self.gridLayout_18.addWidget(self.frame_69, 1, 2, 1, 1)
-
-        self.searchItem = QLineEdit(self.listItem)
-        self.searchItem.setObjectName(u"searchItem")
-        self.searchItem.setMaximumSize(QSize(250, 16777215))
-        self.searchItem.setStyleSheet(u"background-color: rgb(255, 255, 255)")
-
-        self.gridLayout_18.addWidget(self.searchItem, 1, 3, 1, 1)
 
         self.btn_searchItem = QPushButton(self.listItem)
         self.btn_searchItem.setObjectName(u"btn_searchItem")
@@ -1863,12 +1835,12 @@ class Ui_Form(object):
 
         self.gridLayout_18.addWidget(self.btn_refreshItem, 1, 5, 1, 1)
 
-        self.frame_71 = QFrame(self.listItem)
-        self.frame_71.setObjectName(u"frame_71")
-        self.frame_71.setFrameShape(QFrame.StyledPanel)
-        self.frame_71.setFrameShadow(QFrame.Raised)
+        self.searchItem = QLineEdit(self.listItem)
+        self.searchItem.setObjectName(u"searchItem")
+        self.searchItem.setMaximumSize(QSize(250, 16777215))
+        self.searchItem.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
-        self.gridLayout_18.addWidget(self.frame_71, 1, 6, 2, 1)
+        self.gridLayout_18.addWidget(self.searchItem, 1, 3, 1, 1)
 
         self.tbl_itemList = QTableWidget(self.listItem)
         if (self.tbl_itemList.columnCount() < 5):
@@ -1898,7 +1870,46 @@ class Ui_Form(object):
         self.frame_72.setFrameShape(QFrame.StyledPanel)
         self.frame_72.setFrameShadow(QFrame.Raised)
 
-        self.gridLayout_18.addWidget(self.frame_72, 3, 0, 1, 7)
+        self.gridLayout_18.addWidget(self.frame_72, 4, 0, 1, 7)
+
+        self.frame_73 = QFrame(self.listItem)
+        self.frame_73.setObjectName(u"frame_73")
+        self.frame_73.setFrameShape(QFrame.StyledPanel)
+        self.frame_73.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_18.addWidget(self.frame_73, 1, 0, 2, 1)
+
+        self.frame_70 = QFrame(self.listItem)
+        self.frame_70.setObjectName(u"frame_70")
+        self.frame_70.setFrameShape(QFrame.StyledPanel)
+        self.frame_70.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_18.addWidget(self.frame_70, 0, 0, 1, 7)
+
+        self.frame_69 = QFrame(self.listItem)
+        self.frame_69.setObjectName(u"frame_69")
+        self.frame_69.setFrameShape(QFrame.StyledPanel)
+        self.frame_69.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_18.addWidget(self.frame_69, 1, 2, 1, 1)
+
+        self.frame_71 = QFrame(self.listItem)
+        self.frame_71.setObjectName(u"frame_71")
+        self.frame_71.setFrameShape(QFrame.StyledPanel)
+        self.frame_71.setFrameShadow(QFrame.Raised)
+
+        self.gridLayout_18.addWidget(self.frame_71, 1, 6, 2, 1)
+
+        self.btn_downloadCV = QPushButton(self.listItem)
+        self.btn_downloadCV.setObjectName(u"btn_downloadCV")
+        self.btn_downloadCV.setMaximumSize(QSize(95, 16777215))
+        self.btn_downloadCV.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_downloadCV.setStyleSheet(u"background-color: rgba(217,217,217,255)")
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/download.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_downloadCV.setIcon(icon5)
+
+        self.gridLayout_18.addWidget(self.btn_downloadCV, 3, 1, 1, 1)
 
         self.stackedWidget.addWidget(self.listItem)
         self.editItem = QWidget()
@@ -2131,9 +2142,9 @@ class Ui_Form(object):
         self.btn_member_manager.setMaximumSize(QSize(16777215, 16777215))
         self.btn_member_manager.setFont(font2)
         self.btn_member_manager.setCursor(QCursor(Qt.PointingHandCursor))
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/user.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_member_manager.setIcon(icon5)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/user.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_member_manager.setIcon(icon6)
         self.btn_member_manager.setIconSize(QSize(40, 40))
         self.btn_member_manager.setCheckable(False)
 
@@ -2146,9 +2157,9 @@ class Ui_Form(object):
         self.btn_item_manager.setMaximumSize(QSize(16777215, 16777215))
         self.btn_item_manager.setFont(font2)
         self.btn_item_manager.setCursor(QCursor(Qt.PointingHandCursor))
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/folder.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_item_manager.setIcon(icon6)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/folder.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_item_manager.setIcon(icon7)
         self.btn_item_manager.setIconSize(QSize(40, 40))
         self.btn_item_manager.setCheckable(False)
 
@@ -2160,9 +2171,9 @@ class Ui_Form(object):
         self.btn_checkout.setSizePolicy(sizePolicy11)
         self.btn_checkout.setFont(font2)
         self.btn_checkout.setCursor(QCursor(Qt.PointingHandCursor))
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/shopping-cart.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_checkout.setIcon(icon7)
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/shopping-cart.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_checkout.setIcon(icon8)
         self.btn_checkout.setIconSize(QSize(40, 40))
         self.btn_checkout.setCheckable(False)
 
@@ -2174,9 +2185,9 @@ class Ui_Form(object):
         self.btn_member_verification.setSizePolicy(sizePolicy11)
         self.btn_member_verification.setFont(font2)
         self.btn_member_verification.setCursor(QCursor(Qt.PointingHandCursor))
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/user-check.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_member_verification.setIcon(icon8)
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/user-check.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_member_verification.setIcon(icon9)
         self.btn_member_verification.setIconSize(QSize(40, 40))
         self.btn_member_verification.setCheckable(False)
         self.btn_member_verification.setChecked(False)
@@ -2331,6 +2342,7 @@ class Ui_Form(object):
         ___qtablewidgetitem12.setText(QCoreApplication.translate("Form", u"Price (RM)", None));
         ___qtablewidgetitem13 = self.tbl_itemList.horizontalHeaderItem(4)
         ___qtablewidgetitem13.setText(QCoreApplication.translate("Form", u"Stock (Quantity)", None));
+        self.btn_downloadCV.setText(QCoreApplication.translate("Form", u"Download CV", None))
         self.label_39.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt;\">Barcode ID:</span></p></body></html>", None))
         self.input_stock_edit.setText("")
         self.label_38.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Item information</span></p></body></html>", None))

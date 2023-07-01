@@ -5,6 +5,7 @@ from PySide6.QtWidgets import QFileDialog, QHeaderView, QTableWidgetItem
 from PySide6.QtWidgets import QMessageBox
 import os
 import pandas as pd
+import openpyxl
 
 def addItemScreen(self):
     self.stackedWidget.setCurrentWidget(self.addItem)
@@ -35,6 +36,8 @@ def listItemScreen(self):
     tableInv = self.tbl_itemList
     tableInv.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     tableInv.horizontalHeader().setMinimumSectionSize(100)
+    message = ""
+    isLowStock = 0
 
     # display inventory list
     get_inventory = FirebaseAccessor('Inventory').read_all()
@@ -57,8 +60,15 @@ def listItemScreen(self):
         stock_item = QTableWidgetItem(str(item['stock']))
         stock_item.setTextAlignment(Qt.AlignCenter)
         tableInv.setItem(row, 4, stock_item)
+
+        if(item['stock'] < 10):
+            message += item['itemName'] + "\n"
+            isLowStock = 1
         row += 1
 
+    if(isLowStock == 1):
+        QMessageBox.warning(self, 'Warning! Low stock alert.', message, QMessageBox.Ok)
+    
 def browseExcel(self):
     doc_dir = os.path.expanduser("~/Documents")
     fname = QFileDialog.getOpenFileName(self, "Open File", doc_dir, "Excel Files (*.xlsx *.xls)")
@@ -89,6 +99,27 @@ def uploadExcel(self):
             ret = QMessageBox.information(self, 'Success', 'The inventory data from the selected excel file has been added into database.', QMessageBox.Ok)
             if ret == QMessageBox.Ok:
                 self.input_excel_name.clear()
+
+def downloadCV(self):
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.title = "Inventory Data"
+    tableInv = self.tbl_itemList
+
+    column_headers = ["BARCODE ID", "DESCRIPTION (ITEM NAME)", "SALE PRICE (RM)", "IN STOCK", "ITEM CATEGORY"]
+    for col_index, header in enumerate(column_headers, start=1):
+        sheet.cell(row=1, column=col_index, value=header)
+    
+    column_order = [0,1,3,4,2]
+    for row in range(tableInv.rowCount()):
+        for col, col_index in enumerate(column_order, start=1):
+            item_text = tableInv.item(row, col_index).text()
+            sheet.cell(row=row + 2, column=col, value=item_text)
+
+    doc_dir = os.path.expanduser("~/Documents").replace("\\", "/")
+    QMessageBox.information(self, 'Successfully downloaded', 'Inventory data has successfully downloaded as Excel file.\nFile location: '+doc_dir, QMessageBox.Ok)
+    file_path = os.path.join(doc_dir, "Consult_Pharmacy_Inventory_Data.xlsx")
+    workbook.save(file_path)
 
 def createItem(self):
     barcodeID = self.input_barcode.text()

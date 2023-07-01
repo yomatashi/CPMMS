@@ -21,8 +21,9 @@ class RewardsRepository extends GetxController {
         .collection("MemberRewards")
         .where(FieldPath.documentId, isEqualTo: rewardsID)
         .get();
-    final rewardsData =
-        snapshot.docs.map((e) => RewardsModel.fromSnapshot(e)).single;
+    // final rewardsData =
+    //     snapshot.docs.map((e) => RewardsModel.fromSnapshot(e)).single;
+    final rewardsData = RewardsModel.fromSnapshot(snapshot.docs.first);
     return rewardsData;
   }
 

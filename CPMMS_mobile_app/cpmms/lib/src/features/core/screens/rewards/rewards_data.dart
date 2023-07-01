@@ -75,28 +75,62 @@ class RewardsDetailsScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Text("Cost: ${rewardsData.cost} pts", style: txtTheme.bodyLarge?.apply(fontSizeFactor: 1.2)),
+                                Text("Cost: ${rewardsData.cost} pts",
+                                    style: txtTheme.bodyLarge
+                                        ?.apply(fontSizeFactor: 1.2)),
                                 const SizedBox(height: 40),
-                                Text(rewardsData.details, style: txtTheme.headlineSmall),
+                                Text(rewardsData.details,
+                                    style: txtTheme.headlineSmall),
                                 const SizedBox(height: 10),
-                                Text(rewardsData.instruction, style: txtTheme.bodyLarge),
+                                Text(rewardsData.instruction,
+                                    style: txtTheme.bodyLarge),
                                 const SizedBox(height: 20),
                                 SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
-                                    onPressed:
-                                        rewardsID == "rPTW93zLm5QUQ7PWV20a"
-                                            ? null
-                                            : () async {
-                                                final memberData = memberController.memberData.value;
+                                    onPressed: rewardsID ==
+                                            "rPTW93zLm5QUQ7PWV20a"
+                                        ? null
+                                        : () async {
+                                            final memberData = memberController
+                                                .memberData.value;
 
-                                                final claimReward = ClaimRewardsModel(id: "temp", claimStatus: false, memberID: memberData.id, rewardsID: rewardsID);
+                                            if (memberData.points <
+                                                rewardsData.cost) {
+                                              Get.snackbar(
+                                                "Error",
+                                                "Insufficient Points",
+                                                snackPosition:
+                                                    SnackPosition.BOTTOM,
+                                                backgroundColor: Colors.red,
+                                                colorText: Colors.white,
+                                              );
+                                            } else {
+                                              final claimReward =
+                                                  ClaimRewardsModel(
+                                                      id: "temp",
+                                                      claimStatus: false,
+                                                      memberID: memberData.id,
+                                                      rewardsID: rewardsID);
 
-                                                final updateMember = MemberModel(id: memberData.id, fullName: memberData.fullName, email: memberData.email, IC: memberData.IC, points: (memberData.points - rewardsData.cost), pfp: memberData.pfp);
+                                              final updateMember = MemberModel(
+                                                  id: memberData.id,
+                                                  fullName: memberData.fullName,
+                                                  email: memberData.email,
+                                                  IC: memberData.IC,
+                                                  points: (memberData.points -
+                                                      rewardsData.cost),
+                                                  pfp: memberData.pfp);
 
-                                                await memberController.updateMemberNoSnackbar(updateMember, rewardsData);
-                                                await controller.createClaimRewards(claimReward);
-                                              },
+                                              await memberController
+                                                  .updateMemberNoSnackbar(
+                                                      updateMember,
+                                                      rewardsData);
+                                              await controller
+                                                  .createClaimRewards(
+                                                      claimReward);
+                                            }
+                                          },
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: tPrimaryColor,
                                         side: BorderSide.none,

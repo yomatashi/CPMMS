@@ -98,6 +98,7 @@ class WidgetMemberVerificationScreen(QWidget, Ui_Form):
         self.btn_back_item.clicked.connect(lambda: inventory.listItemScreen(self))
         self.btn_deleteItem.clicked.connect(lambda: inventory.delete_item(self))
         self.btn_updateItem.clicked.connect(lambda: inventory.update_item(self))
+        self.btn_downloadCV.clicked.connect(lambda: inventory.downloadCV(self))
 
     # ---Member Verification Screen---
     def ICmethodscreen(self):

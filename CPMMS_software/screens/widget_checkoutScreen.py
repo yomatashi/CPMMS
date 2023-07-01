@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QHeaderView, QTableWidgetItem, QPushButton, QSpinBox
 from PySide6.QtCore import Qt
 from DB.connectionDB import FirebaseAccessor, FirebaseMutator
+from PySide6.QtWidgets import QMessageBox
 import resources_rc
 
 def checkoutScreen(self):
@@ -52,6 +53,10 @@ def addItem(self, item_data):
     btn_cancel = QPushButton("X")
     btn_cancel.setStyleSheet("color: red; font-weight: bold;")
     table.setCellWidget(rowcount, 4, btn_cancel)
+
+    # display alert if low stock
+    if(item_data['stock'] < 10):
+        QMessageBox.warning(self, 'Low stock alert!', "This item is critically low in stock,\nplease update inventory.", QMessageBox.Ok)
 
     # Connect signals
     qty.valueChanged.connect(self.onchangeqty)

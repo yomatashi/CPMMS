@@ -66,20 +66,13 @@ def registerNewMember(self):
     ICnum = self.input_ICNum_reg.text()
     photoDir = self.input_fileName.text()
 
-    if not all([fullName, email, ICnum]):
-        QMessageBox.warning(self, "Error", "Please fill in the empty field(s)", QMessageBox.Ok)
-    elif not self.input_email_reg.hasAcceptableInput():
-        QMessageBox.warning(self, "Error", "Invalid email address", QMessageBox.Ok)
-    elif not self.input_ICNum_reg.hasAcceptableInput():
-        QMessageBox.warning(self, "Error", "Invalid IC number", QMessageBox.Ok)
-    elif not photoDir:
-        QMessageBox.warning(self, "No photo attached", "Please upload a photo of the member's face", QMessageBox.Ok)
-    else:
+    def registerMember(isImage):
         tryRegister = FirebaseAuthentication.register(email, "cpmmspw123")
         if tryRegister == "Pass":
             Member = FirebaseMutator('Member')
             counter = FirebaseAccessor('counter').read("indices")
             counterUpdate = FirebaseMutator('counter')
+            firebase_storage = FirebaseStorage()
 
             Memberdata = {'email': email, 'fullName': fullName, 'IC': ICnum, 'points': 0, 'pfp': ""}
             Member.create(Memberdata, "mem" + str(counter['mem']+1))
@@ -91,11 +84,11 @@ def registerNewMember(self):
             print(tryPwReset)
 
             # upload photo to firebase storage
-            firebase_storage = FirebaseStorage()
-            firebase_storage.upload_file(photoDir, "img", new_file_name)
-            storage_update_date = FirebaseMutator('FBStorage')
-            new_date = {'last_update': datetime.datetime.now().astimezone(None)}
-            storage_update_date.update("storageupdate", new_date)
+            if(isImage == "Include image"):
+                firebase_storage.upload_file(photoDir, "img", new_file_name)
+                storage_update_date = FirebaseMutator('FBStorage')
+                new_date = {'last_update': datetime.datetime.now().astimezone(None)}
+                storage_update_date.update("storageupdate", new_date)
 
             ret = QMessageBox.information(self, "Success", "New member has been added!\nThe member can now login into Consult Pharmacy mobile application.\nFor member:\nPlease check your email address to reset your password for first time login.", QMessageBox.Ok)
             if ret == QMessageBox.Ok:
@@ -106,6 +99,22 @@ def registerNewMember(self):
                 firebase_storage.download_folder("img", "ImagesMembers")
         else:
             QMessageBox.warning(self, "Failed to register", tryRegister, QMessageBox.Ok)
+
+    if not all([fullName, email, ICnum]):
+        QMessageBox.warning(self, "Error", "Please fill in the empty field(s)", QMessageBox.Ok)
+    elif not self.input_email_reg.hasAcceptableInput():
+        QMessageBox.warning(self, "Error", "Invalid email address", QMessageBox.Ok)
+    elif not self.input_ICNum_reg.hasAcceptableInput():
+        QMessageBox.warning(self, "Error", "Invalid IC number", QMessageBox.Ok)
+    elif not photoDir:
+        # QMessageBox.warning(self, "No photo attached", "Please upload a photo of the member's face", QMessageBox.Ok)
+        ret = QMessageBox.information(self, "No photo attached", "Are you sure you don't want to upload photo of the member's face?", QMessageBox.Yes | QMessageBox.No)
+        if ret == QMessageBox.Yes:
+            registerMember("No image")
+        else:
+            print("User chose No")
+    else:
+        registerMember("Include image")
 
 def searchMem(self):
     tableMem = self.tbl_memList
@@ -179,6 +188,6 @@ def update_member(self):
     points = self.input_pts_edit.text()
     
     update_mem = FirebaseMutator('Member')
-    update_data = {'email': email, 'fullName': fullName, 'IC': ICnum, 'points': points}
+    update_data = {'email': email, 'fullName': fullName, 'IC': ICnum, 'points': int(points)}
     update_mem.update(memberID, update_data)
     QMessageBox.information(self, "Updated", "Member information successfully updated.", QMessageBox.Ok)
