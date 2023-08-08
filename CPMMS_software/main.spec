@@ -8,7 +8,10 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('./DB/serviceAccountKey.json', '.'), ('./face_recog_models/shape_predictor_68_face_landmarks.dat', 'face_recognition_models/models'), ('./face_recog_models/shape_predictor_5_face_landmarks.dat', 'face_recognition_models/models'), ('./face_recog_models/mmod_human_face_detector.dat', 'face_recognition_models/models'), ('./face_recog_models/dlib_face_recognition_resnet_model_v1.dat', 'face_recognition_models/models')],
+    datas=[
+        ('DB/serviceAccountKey.json', 'DB'), 
+        ('face_recog_models', 'face_recognition_models/models')
+    ],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

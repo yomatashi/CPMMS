@@ -6,9 +6,11 @@ from DB.connectionDB import FirebaseAccessor
 import cv2
 import face_recognition
 import datetime
-import os
+import sys, os
 import numpy as np
 import time
+
+face_recognition.face_locations([], model='cnn')
 
 class Thread(QThread):
     updateFrame = Signal(QImage)

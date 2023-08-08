@@ -6,3 +6,7 @@ CPMMS_mobile_app/cpmms/ios/firebase_app_id_file.json
 CPMMS_mobile_app/cpmms/lib/firebase_options.dart
 CPMMS_mobile_app/cpmms/macos/firebase_app_id_file.json
 CPMMS_mobile_app/cpmms/macos/Runner/GoogleService-Info.plist
+Executable
+CPMMS_software/build
+CPMMS_software/dist
+CPMMS_software/face_recog_models

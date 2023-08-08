@@ -1,11 +1,21 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, storage, auth
-import os
+import sys, os
 import DB.firebaseconfig
 import pyrebase
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 # Fetch the service account key JSON file contents
-cred = credentials.Certificate("D:/Github/CPMMS/CPMMS_software/DB/serviceAccountKey.json")
+cred = credentials.Certificate(resource_path("DB/serviceAccountKey.json"))
 firebase_admin.initialize_app(cred)
 bucket_name = DB.firebaseconfig.get_bucket_name()
 
@@ -137,34 +147,3 @@ class FirebaseAuthentication:
             return "Success! Please check your email to reset your password"
         except:
             return "Failed to send email due to invalid email or email is not registered"
-
-# firebase_storage = FirebaseStorage()
-#  > Upload folder to firebase storage
-# firebase_storage.upload_folder("ImagesMembers", "img")
-
-# > Download folder from firebase storage
-# firebase_storage.download_folder("img", "ImagesMembers")
-
-# > Create new member
-# mutator = FirebaseMutator('members')
-# accessor = FirebaseAccessor('members')
-# new_member_data = {'name': 'testing', 'points': 0}
-# new_member_id = mutator.create(new_member_data, "testing")
-# print('New user created with ID:', new_member_id)
-
-# > Update the member's point
-# updated_user_data = {'points': 100}
-# mutator.update("testing", updated_user_data)
-# print('Member's points updated')
-
-# > Retrieve all users
-# all_members = accessor.read_all()
-# print('All members:', all_members)
-
-# > Retrieve the updated user
-# updated_user = accessor.read("testing")
-# print('Updated user:', updated_user)
-
-# > Delete the user
-# mutator.delete("i5pytua00CCI1cIy0yUM")
-# print('User deleted')
